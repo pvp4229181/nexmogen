@@ -1,0 +1,131 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+  background: #070711;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  overflow-x: clip;
+}
+
+body {
+  min-height: 100vh;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  overflow-x: clip;
+  overflow-wrap: break-word;
+  background:
+    radial-gradient(circle at 10% 0%, rgba(59, 130, 246, 0.12), transparent 28rem),
+    radial-gradient(circle at 90% 35%, rgba(0, 224, 198, 0.08), transparent 30rem),
+    #070711;
+  color: #f5f5fa;
+}
+
+main,
+header,
+footer,
+section {
+  min-width: 0;
+  max-width: 100%;
+}
+
+main {
+  width: 100%;
+  overflow-x: hidden;
+  overflow-x: clip;
+}
+
+img,
+video,
+canvas,
+svg {
+  max-width: 100%;
+}
+
+::selection {
+  background: rgba(100, 206, 251, 0.35);
+  color: #fff;
+}
+
+a,
+button,
+input,
+textarea {
+  outline-color: #64cefb;
+}
+
+.container-px {
+  @apply w-full min-w-0 max-w-full px-4 sm:px-8 lg:px-12;
+}
+
+.section {
+  @apply relative w-full max-w-full overflow-hidden py-16 sm:py-24 lg:py-32;
+}
+
+.section-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: linear-gradient(to bottom, transparent, black 18%, black 82%, transparent);
+}
+
+.eyebrow {
+  @apply inline-flex max-w-full flex-wrap items-center gap-2 text-xs font-semibold uppercase leading-5 tracking-[0.18em] text-primary-light sm:tracking-[0.24em];
+}
+
+.eyebrow::before {
+  content: "";
+  @apply h-px w-8 bg-gradient-to-r from-primary-light to-accent;
+}
+
+.section-title {
+  @apply mt-4 break-words font-display text-3xl font-bold leading-tight text-white sm:text-4xl lg:text-5xl;
+}
+
+.section-copy {
+  @apply mt-5 text-base leading-8 text-white/60 sm:text-lg;
+}
+
+.gradient-text {
+  @apply bg-gradient-to-r from-primary-light via-white to-accent bg-clip-text text-transparent;
+}
+
+.btn-primary {
+  @apply inline-flex min-h-12 max-w-full items-center justify-center whitespace-normal rounded-full bg-gradient-to-r from-primary to-primary-light px-5 py-3 text-center text-sm font-semibold uppercase tracking-[0.08em] text-white shadow-lg shadow-primary/25 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-primary/35 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-light sm:px-7 sm:tracking-[0.12em];
+}
+
+.btn-ghost {
+  @apply inline-flex min-h-12 max-w-full items-center justify-center whitespace-normal rounded-full border border-white/20 bg-white/[0.03] px-5 py-3 text-center text-sm font-semibold uppercase tracking-[0.08em] text-white backdrop-blur-md transition-all duration-300 hover:-translate-y-0.5 hover:border-primary-light/60 hover:bg-white/[0.08] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-light sm:px-7 sm:tracking-[0.12em];
+}
+
+.card {
+  @apply min-w-0 max-w-full rounded-3xl border border-white/10 bg-white/[0.045] shadow-2xl shadow-black/10 backdrop-blur-xl;
+}
+
+.card-interactive {
+  @apply transition-all duration-300 hover:-translate-y-1 hover:border-primary-light/35 hover:bg-white/[0.075] hover:shadow-primary/10;
+}
+
+.field {
+  @apply w-full min-w-0 max-w-full rounded-2xl border border-white/10 bg-black/20 px-4 py-3.5 text-white placeholder-white/30 transition-colors focus:border-primary-light focus:bg-black/30 focus:outline-none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
