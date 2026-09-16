@@ -37,7 +37,7 @@ export default function PageHero({
   return (
     <section className="relative flex min-h-[62vh] w-full items-center overflow-hidden bg-black pt-20 sm:min-h-[68vh]">
       <video
-        className="absolute inset-0 h-full w-full object-cover"
+        className="absolute inset-0 h-full w-full object-cover grayscale contrast-125"
         src={HERO_VIDEO_URL}
         autoPlay
         loop
@@ -46,8 +46,9 @@ export default function PageHero({
         preload="metadata"
         aria-hidden="true"
       />
+      <div className="absolute inset-0 bg-red-600/45 mix-blend-color" />
       <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(5,5,14,0.58),rgba(5,5,14,0.82))]" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_45%,rgba(59,130,246,0.2),transparent_42%),linear-gradient(to_top,#070711_0%,transparent_30%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_45%,rgba(239,68,68,0.24),transparent_42%),linear-gradient(to_top,#070711_0%,transparent_30%)]" />
       <div className="section-grid pointer-events-none absolute inset-0 opacity-35" />
 
       <div className="container-px relative z-10 mx-auto flex w-full max-w-7xl flex-col items-center py-24 text-center sm:py-32">

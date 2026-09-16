@@ -19,8 +19,8 @@ body {
   overflow-x: clip;
   overflow-wrap: break-word;
   background:
-    radial-gradient(circle at 10% 0%, rgba(59, 130, 246, 0.12), transparent 28rem),
-    radial-gradient(circle at 90% 35%, rgba(0, 224, 198, 0.08), transparent 30rem),
+    radial-gradient(circle at 10% 0%, rgba(239, 68, 68, 0.14), transparent 28rem),
+    radial-gradient(circle at 90% 35%, rgba(185, 28, 28, 0.1), transparent 30rem),
     #070711;
   color: #f5f5fa;
 }
@@ -47,7 +47,7 @@ svg {
 }
 
 ::selection {
-  background: rgba(100, 206, 251, 0.35);
+  background: rgba(239, 68, 68, 0.4);
   color: #fff;
 }
 
@@ -55,7 +55,7 @@ a,
 button,
 input,
 textarea {
-  outline-color: #64cefb;
+  outline-color: #fb7185;
 }
 
 .container-px {

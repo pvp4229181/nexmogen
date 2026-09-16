@@ -20,7 +20,7 @@ export default function CtaSection({
         <Reveal>
           <div className="relative min-w-0 overflow-hidden rounded-3xl border border-white/10 bg-black px-5 py-14 text-center shadow-2xl shadow-primary/10 sm:rounded-[2rem] sm:px-12 sm:py-16 md:py-24">
             <video
-              className="absolute inset-0 h-full w-full object-cover"
+              className="absolute inset-0 h-full w-full object-cover grayscale contrast-125"
               src={HERO_VIDEO_URL}
               autoPlay
               loop
@@ -29,6 +29,7 @@ export default function CtaSection({
               preload="metadata"
               aria-hidden="true"
             />
+            <div className="absolute inset-0 bg-red-600/50 mix-blend-color" />
             <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(5,5,14,0.92),rgba(5,5,14,0.7),rgba(5,5,14,0.92))]" />
             <div className="section-grid pointer-events-none absolute inset-0 opacity-30" />
             <div className="relative z-10">

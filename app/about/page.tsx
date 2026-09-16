@@ -84,7 +84,7 @@ export default function AboutPage() {
       />
 
       <section className="relative overflow-hidden bg-ink py-20 md:py-24">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_0%,rgba(59,130,246,0.16),transparent_38%),radial-gradient(circle_at_85%_100%,rgba(0,224,198,0.08),transparent_34%)]" />
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_0%,rgba(239,68,68,0.18),transparent_38%),radial-gradient(circle_at_85%_100%,rgba(185,28,28,0.1),transparent_34%)]" />
         <div className="container-px relative mx-auto grid max-w-6xl gap-7 md:grid-cols-3">
           <Reveal className="h-full">
             <article className="h-full min-h-[280px] border border-white/10 bg-surface px-6 pb-9 pt-0 sm:px-9 sm:pb-10">
@@ -185,7 +185,7 @@ export default function AboutPage() {
       </section>
 
       <section className="relative overflow-hidden border-y border-white/10 bg-surface py-20 md:py-24">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_75%_50%,rgba(59,130,246,0.1),transparent_42%)]" />
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_75%_50%,rgba(239,68,68,0.12),transparent_42%)]" />
         <div className="container-px relative mx-auto max-w-6xl">
           <div className="grid gap-x-10 gap-y-12 sm:grid-cols-2 lg:grid-cols-[1.45fr_repeat(4,minmax(0,1fr))] lg:items-center">
             <Reveal className="sm:col-span-2 lg:col-span-1">

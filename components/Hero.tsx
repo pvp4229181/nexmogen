@@ -22,7 +22,7 @@ export default function Hero() {
   return (
     <section className="relative min-h-[700px] w-full overflow-hidden bg-black sm:min-h-screen">
       <video
-        className="absolute inset-0 h-full w-full object-cover"
+        className="absolute inset-0 h-full w-full object-cover grayscale contrast-125"
         src={HERO_VIDEO_URL}
         autoPlay
         loop
@@ -31,8 +31,9 @@ export default function Hero() {
         preload="auto"
         aria-hidden="true"
       />
+      <div className="absolute inset-0 bg-red-600/45 mix-blend-color" />
       <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(5,5,14,0.92)_0%,rgba(5,5,14,0.68)_52%,rgba(5,5,14,0.38)_100%)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_45%,rgba(59,130,246,0.18),transparent_36%),linear-gradient(to_top,#070711_0%,transparent_28%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_45%,rgba(239,68,68,0.24),transparent_36%),linear-gradient(to_top,#070711_0%,transparent_28%)]" />
       <div className="section-grid pointer-events-none absolute inset-0 opacity-40" />
 
       <div className="container-px relative z-10 mx-auto flex min-h-[700px] max-w-7xl items-center py-28 sm:min-h-screen sm:py-32">

@@ -11,12 +11,12 @@ const config: Config = {
         ink: "#0a0a14",
         surface: "#0f0f1c",
         primary: {
-          DEFAULT: "#3b82f6",
-          light: "#64CEFB",
-          dark: "#1d4ed8",
+          DEFAULT: "#ef4444",
+          light: "#fb7185",
+          dark: "#b91c1c",
         },
         accent: {
-          DEFAULT: "#00e0c6",
+          DEFAULT: "#ff4d4d",
         },
       },
       fontFamily: {
@@ -25,7 +25,7 @@ const config: Config = {
       },
       backgroundImage: {
         "grid-glow":
-          "radial-gradient(circle at 20% 20%, rgba(59,130,246,0.35), transparent 40%), radial-gradient(circle at 80% 0%, rgba(0,224,198,0.25), transparent 45%)",
+          "radial-gradient(circle at 20% 20%, rgba(239,68,68,0.35), transparent 40%), radial-gradient(circle at 80% 0%, rgba(185,28,28,0.25), transparent 45%)",
       },
       animation: {
         "spin-slow": "spin 18s linear infinite",
