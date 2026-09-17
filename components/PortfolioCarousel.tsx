@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import TiltCard from "@/components/TiltCard";
+import SpotlightCard from "@/components/SpotlightCard";
 import { IProject } from "@/models/Project";
 
 const GRADIENTS = [
@@ -61,7 +61,7 @@ export default function PortfolioCarousel({ projects }: { projects: IProject[] }
               }}
               className="min-w-0 w-[88%] shrink-0 snap-start sm:w-[47%] lg:w-[31.5%]"
             >
-              <TiltCard>
+              <SpotlightCard>
                 <CardTag
                   {...(project.websiteUrl
                     ? { href: project.websiteUrl, target: "_blank", rel: "noopener noreferrer" }
@@ -92,7 +92,7 @@ export default function PortfolioCarousel({ projects }: { projects: IProject[] }
                     </span>
                   </div>
                 </CardTag>
-              </TiltCard>
+              </SpotlightCard>
             </div>
           );
         })}

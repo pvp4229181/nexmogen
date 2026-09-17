@@ -8,15 +8,15 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        ink: "#0a0a14",
-        surface: "#0f0f1c",
+        ink: "#050506",
+        surface: "#0c0c0f",
         primary: {
-          DEFAULT: "#ef4444",
-          light: "#fb7185",
-          dark: "#b91c1c",
+          DEFAULT: "#e50914",
+          light: "#ff4d57",
+          dark: "#9f0710",
         },
         accent: {
-          DEFAULT: "#ff4d4d",
+          DEFAULT: "#ff1744",
         },
       },
       fontFamily: {
@@ -25,12 +25,15 @@ const config: Config = {
       },
       backgroundImage: {
         "grid-glow":
-          "radial-gradient(circle at 20% 20%, rgba(239,68,68,0.35), transparent 40%), radial-gradient(circle at 80% 0%, rgba(185,28,28,0.25), transparent 45%)",
+          "radial-gradient(circle at 20% 20%, rgba(229,9,20,0.32), transparent 40%), radial-gradient(circle at 80% 0%, rgba(255,23,68,0.2), transparent 45%)",
       },
       animation: {
         "spin-slow": "spin 18s linear infinite",
         float: "float 6s ease-in-out infinite",
         marquee: "marquee 30s linear infinite",
+        "marquee-reverse": "marquee-reverse 34s linear infinite",
+        "pulse-glow": "pulse-glow 4s ease-in-out infinite",
+        "gradient-pan": "gradient-pan 8s ease infinite",
       },
       keyframes: {
         float: {
@@ -40,6 +43,18 @@ const config: Config = {
         marquee: {
           "0%": { transform: "translateX(0)" },
           "100%": { transform: "translateX(-50%)" },
+        },
+        "marquee-reverse": {
+          "0%": { transform: "translateX(-50%)" },
+          "100%": { transform: "translateX(0)" },
+        },
+        "pulse-glow": {
+          "0%, 100%": { opacity: "0.35", transform: "scale(1)" },
+          "50%": { opacity: "0.7", transform: "scale(1.06)" },
+        },
+        "gradient-pan": {
+          "0%, 100%": { backgroundPosition: "0% 50%" },
+          "50%": { backgroundPosition: "100% 50%" },
         },
       },
     },

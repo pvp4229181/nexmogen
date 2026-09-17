@@ -1,4 +1,7 @@
+import Link from "next/link";
+import { FiArrowRight } from "react-icons/fi";
 import Reveal from "@/components/Reveal";
+import TextReveal from "@/components/TextReveal";
 import PortfolioCarousel from "@/components/PortfolioCarousel";
 import { IProject } from "@/models/Project";
 
@@ -9,9 +12,11 @@ export default function PortfolioSection({ projects }: { projects: IProject[] })
       <div className="container-px relative mx-auto max-w-7xl">
         <Reveal className="max-w-3xl">
           <p className="eyebrow">Selected projects</p>
-          <h2 className="section-title">
-            Our Latest Work
-          </h2>
+          <TextReveal
+            text="Our Latest Work"
+            highlight="Work"
+            className="section-title"
+          />
           <p className="section-copy max-w-2xl">
             Explore our latest projects and see how{" "}
             <span className="font-semibold text-white">Nexmogen</span>{" "}
@@ -21,6 +26,13 @@ export default function PortfolioSection({ projects }: { projects: IProject[] })
         </Reveal>
 
         <PortfolioCarousel projects={projects} />
+
+        <Reveal className="mt-10 flex justify-center">
+          <Link href="/case-studies" className="btn-ghost group">
+            Read the case studies
+            <FiArrowRight className="ml-2 transition-transform group-hover:translate-x-1" />
+          </Link>
+        </Reveal>
       </div>
     </section>
   );

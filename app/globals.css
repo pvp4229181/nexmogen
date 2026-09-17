@@ -4,7 +4,7 @@
 
 html {
   scroll-behavior: smooth;
-  background: #070711;
+  background: #050506;
   width: 100%;
   max-width: 100%;
   overflow-x: hidden;
@@ -19,9 +19,9 @@ body {
   overflow-x: clip;
   overflow-wrap: break-word;
   background:
-    radial-gradient(circle at 10% 0%, rgba(239, 68, 68, 0.14), transparent 28rem),
-    radial-gradient(circle at 90% 35%, rgba(185, 28, 28, 0.1), transparent 30rem),
-    #070711;
+    radial-gradient(circle at 8% 0%, rgba(229, 9, 20, 0.16), transparent 30rem),
+    radial-gradient(circle at 94% 34%, rgba(255, 23, 68, 0.09), transparent 32rem),
+    #050506;
   color: #f5f5fa;
 }
 
@@ -47,7 +47,7 @@ svg {
 }
 
 ::selection {
-  background: rgba(239, 68, 68, 0.4);
+  background: rgba(229, 9, 20, 0.5);
   color: #fff;
 }
 
@@ -55,15 +55,15 @@ a,
 button,
 input,
 textarea {
-  outline-color: #fb7185;
+  outline-color: #ff4d57;
 }
 
 .container-px {
-  @apply w-full min-w-0 max-w-full px-4 sm:px-8 lg:px-12;
+  @apply w-full min-w-0 max-w-full px-5 sm:px-10 lg:px-16 xl:px-20;
 }
 
 .section {
-  @apply relative w-full max-w-full overflow-hidden py-16 sm:py-24 lg:py-32;
+  @apply relative w-full max-w-full overflow-hidden py-16 sm:py-20 lg:py-24;
 }
 
 .section-grid {
@@ -113,6 +113,131 @@ textarea {
 
 .field {
   @apply w-full min-w-0 max-w-full rounded-2xl border border-white/10 bg-black/20 px-4 py-3.5 text-white placeholder-white/30 transition-colors focus:border-primary-light focus:bg-black/30 focus:outline-none;
+}
+
+/* ---------- Interactive card shell (spotlight + tilt) ---------- */
+
+.spotlight {
+  --spot-x: 50%;
+  --spot-y: 50%;
+  --spot-opacity: 0;
+  --tilt-x: 0deg;
+  --tilt-y: 0deg;
+  @apply relative min-w-0 max-w-full;
+  perspective: 1000px;
+}
+
+.spotlight > * {
+  position: relative;
+  isolation: isolate;
+  transition: transform 300ms cubic-bezier(0.22, 1, 0.36, 1);
+  transform-style: preserve-3d;
+}
+
+.spotlight-tilt > * {
+  transform: rotateX(var(--tilt-x)) rotateY(var(--tilt-y));
+}
+
+.spotlight > *::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  opacity: var(--spot-opacity);
+  transition: opacity 320ms ease;
+  pointer-events: none;
+  background: radial-gradient(
+    22rem circle at var(--spot-x) var(--spot-y),
+    rgba(229, 9, 20, 0.18),
+    transparent 62%
+  );
+}
+
+/* ---------- Ambient motion ---------- */
+
+.glow-ring {
+  position: relative;
+}
+
+.glow-ring::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(120deg, rgba(229, 9, 20, 0.8), transparent 40%, rgba(255, 77, 87, 0.62));
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 300ms ease;
+  pointer-events: none;
+}
+
+.glow-ring:hover::after {
+  opacity: 1;
+}
+
+.noise-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ---------- Scroll-linked 3D depth ---------- */
+
+.scroll-depth-section {
+  isolation: isolate;
+  perspective: 1400px;
+}
+
+.scroll-depth-section::before {
+  content: "";
+  position: absolute;
+  inset: -30% -12%;
+  z-index: 0;
+  pointer-events: none;
+  opacity: var(--depth-opacity, 0.38);
+  background-image:
+    linear-gradient(rgba(229, 9, 20, 0.16) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 77, 87, 0.12) 1px, transparent 1px),
+    radial-gradient(circle at 72% 48%, rgba(229, 9, 20, 0.16), transparent 36%);
+  background-size: 72px 72px, 72px 72px, 100% 100%;
+  mask-image: linear-gradient(to bottom, transparent 8%, black 34%, black 66%, transparent 92%);
+  transform-origin: 50% 50%;
+  transform: translate3d(0, var(--depth-y, 0), -90px)
+    rotateX(64deg)
+    rotateZ(var(--depth-rz, 0deg))
+    scale(1.18);
+  transform-style: preserve-3d;
+  will-change: transform, opacity;
+}
+
+.scroll-depth-section > .container-px {
+  position: relative;
+  z-index: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-depth-section::before {
+    opacity: 0.22;
+    transform: rotateX(64deg) translateZ(-90px) scale(1.18);
+    will-change: auto;
+  }
+
+  .spotlight > * {
+    transform: none !important;
+  }
+
+  .spotlight > *::before {
+    opacity: 0 !important;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

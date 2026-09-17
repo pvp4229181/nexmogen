@@ -1,4 +1,5 @@
 import Reveal from "@/components/Reveal";
+import TextReveal from "@/components/TextReveal";
 import TestimonialsCarousel from "@/components/TestimonialsCarousel";
 import { ITestimonial } from "@/models/Testimonial";
 
@@ -13,9 +14,11 @@ export default function TestimonialsSection({
       <div className="container-px relative mx-auto max-w-7xl">
         <Reveal className="mx-auto max-w-3xl text-center">
           <p className="eyebrow justify-center">Client stories</p>
-          <h2 className="section-title">
-            Our Customer Reviews
-          </h2>
+          <TextReveal
+            text="Our Customer Reviews"
+            highlight="Reviews"
+            className="section-title mx-auto"
+          />
           <p className="section-copy mx-auto max-w-2xl">
             We take pride in delivering exceptional services that exceed
             expectations. Here&apos;s what our satisfied customers have to

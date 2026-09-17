@@ -1,55 +1,18 @@
-import Link from "next/link";
 import Reveal from "@/components/Reveal";
-import TiltCard from "@/components/TiltCard";
-import { services } from "@/lib/services";
+import TextReveal from "@/components/TextReveal";
+import VariantBento from "@/components/service-variants/VariantBento";
 
 export default function ServicesSection() {
   return (
     <section id="services" className="section bg-ink">
-      <div className="section-grid pointer-events-none absolute inset-0 opacity-50" />
+      <div className="section-grid pointer-events-none absolute inset-0 opacity-55" />
+      <div className="pointer-events-none absolute right-[-12rem] top-16 h-[34rem] w-[34rem] rounded-full border border-accent/10 shadow-[0_0_120px_rgba(229,9,20,.13)]" />
       <div className="container-px relative mx-auto max-w-7xl">
-        <Reveal className="grid gap-6 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
-          <div>
-            <p className="eyebrow">What we build</p>
-            <h2 className="section-title">
-              How Can We Elevate Your Business?
-            </h2>
-          </div>
-          <p className="section-copy max-w-2xl lg:ml-auto">
-            At <span className="font-semibold text-white">Nexmogen</span>, we
-            transform ideas into reality with expert design and development.
-            Let&apos;s create something exceptional together!
-          </p>
+        <Reveal className="grid gap-8 lg:grid-cols-[.8fr_1.2fr] lg:items-end">
+          <div><p className="eyebrow">What we build</p><TextReveal text="Digital systems that move businesses" highlight="move" className="section-title" /></div>
+          <div className="lg:ml-auto lg:max-w-xl"><p className="section-copy">From the first interface to the intelligence behind it, Nexmogen brings design, engineering, automation, and growth into one focused delivery team.</p><div className="mt-6 flex flex-wrap gap-2 text-[10px] font-semibold uppercase tracking-[.18em] text-white/45"><span className="rounded-full border border-white/10 px-3 py-2">Strategy</span><span className="rounded-full border border-white/10 px-3 py-2">Design</span><span className="rounded-full border border-white/10 px-3 py-2">Engineering</span><span className="rounded-full border border-white/10 px-3 py-2">Growth</span></div></div>
         </Reveal>
-
-        <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:mt-16 lg:grid-cols-3">
-          {services.map((service, i) => {
-            const Icon = service.icon;
-            return (
-              <Reveal key={service.title} delay={i * 0.08} className="h-full">
-                <TiltCard className="h-full">
-                  <Link
-                    href={`/services/${service.slug}`}
-                    className="card card-interactive group flex h-full min-h-72 flex-col p-7 sm:p-8"
-                  >
-                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-primary-light/15 bg-primary/10 text-2xl text-primary-light transition-colors group-hover:bg-primary group-hover:text-white">
-                      <Icon />
-                    </div>
-                    <h3 className="mt-8 font-display text-xl font-semibold text-white">
-                      {service.title}
-                    </h3>
-                    <p className="mt-4 text-sm leading-7 text-white/55">
-                      {service.description}
-                    </p>
-                    <span className="mt-auto pt-7 text-sm font-semibold text-primary-light">
-                      Explore service →
-                    </span>
-                  </Link>
-                </TiltCard>
-              </Reveal>
-            );
-          })}
-        </div>
+        <div className="mt-14 lg:mt-20"><VariantBento /></div>
       </div>
     </section>
   );

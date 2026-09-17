@@ -30,7 +30,7 @@ export default function CtaSection({
               aria-hidden="true"
             />
             <div className="absolute inset-0 bg-red-600/50 mix-blend-color" />
-            <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(5,5,14,0.92),rgba(5,5,14,0.7),rgba(5,5,14,0.92))]" />
+            <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(5,5,6,0.94),rgba(5,5,6,0.68),rgba(5,5,6,0.94))]" />
             <div className="section-grid pointer-events-none absolute inset-0 opacity-30" />
             <div className="relative z-10">
               <p className="eyebrow justify-center">Start a conversation</p>

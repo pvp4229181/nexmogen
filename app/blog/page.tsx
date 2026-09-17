@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
-import TiltCard from "@/components/TiltCard";
+import SpotlightCard from "@/components/SpotlightCard";
 import PageHero from "@/components/PageHero";
 import { getBlogPosts } from "@/lib/data";
 import { FiArrowRight } from "react-icons/fi";
@@ -37,7 +37,7 @@ export default async function BlogPage() {
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {posts.map((post, i) => (
               <Reveal key={post.slug} delay={i * 0.08} className="h-full">
-                <TiltCard className="h-full">
+                <SpotlightCard className="h-full">
                   <Link
                     href={`/blog/${post.slug}`}
                     className="card card-interactive group flex h-full flex-col overflow-hidden"
@@ -77,7 +77,7 @@ export default async function BlogPage() {
                       </div>
                     </div>
                   </Link>
-                </TiltCard>
+                </SpotlightCard>
               </Reveal>
             ))}
           </div>
