@@ -332,3 +332,13 @@ export const caseStudies: CaseStudy[] = [
 export function getCaseStudy(slug: string) {
   return caseStudies.find((study) => study.slug === slug);
 }
+
+/** Project documents carry no slug, so the carousel matches on name. */
+export function getCaseStudySlugByName(name: string) {
+  const key = normalizeName(name);
+  return caseStudies.find((study) => normalizeName(study.name) === key)?.slug;
+}
+
+function normalizeName(value: string) {
+  return value.toLowerCase().replace(/[^a-z0-9]/g, "");
+}

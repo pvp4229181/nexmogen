@@ -6,6 +6,7 @@ import Reveal from "@/components/Reveal";
 import SpotlightCard from "@/components/SpotlightCard";
 import CtaSection from "@/components/CtaSection";
 import PageHero from "@/components/PageHero";
+import ServiceProcessRail from "@/components/ServiceProcessRail";
 import { services, getServiceBySlug } from "@/lib/services";
 
 const featureLayout = ["lg:col-span-7", "lg:col-span-5", "lg:col-span-4", "lg:col-span-8", "lg:col-span-5", "lg:col-span-7"];
@@ -73,18 +74,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
     <section className="section bg-surface">
       <div className="container-px mx-auto max-w-7xl">
         <Reveal className="max-w-3xl"><p className="eyebrow">How we work</p><h2 className="section-title">Our Process</h2><p className="section-copy">A clear path from the first conversation to a dependable launch.</p></Reveal>
-        <div className="relative mt-16 border-t border-white/15 lg:mt-20">
-          <div className="absolute left-0 top-[-1px] h-px w-1/3 bg-gradient-to-r from-primary via-primary-light to-transparent" />
-          <div className="grid gap-0 sm:grid-cols-2 lg:grid-cols-4">
-            {service.process.map((step, index) => <Reveal key={step.title} delay={index * .08} className="h-full">
-              <article className="relative h-full border-b border-white/10 px-0 py-9 sm:px-7 lg:border-b-0 lg:border-r lg:last:border-r-0">
-                <p className="font-display text-5xl font-bold text-transparent [-webkit-text-stroke:1px_rgba(255,77,87,.5)]">{String(index + 1).padStart(2, "0")}</p>
-                <h3 className="mt-8 font-display text-xl font-semibold text-white">{step.title}</h3>
-                <p className="mt-3 text-sm leading-7 text-white/55">{step.description}</p>
-              </article>
-            </Reveal>)}
-          </div>
-        </div>
+        <ServiceProcessRail steps={service.process} />
       </div>
     </section>
 
