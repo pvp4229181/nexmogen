@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { FiCheck } from "react-icons/fi";
 import Reveal from "@/components/Reveal";
+import ScrollCopy from "@/components/scroll/ScrollCopy";
 import TextReveal from "@/components/TextReveal";
 
 const CAPABILITIES = [
@@ -95,10 +96,10 @@ export default function CapabilityTabs() {
             highlight="deliverables"
             className="section-title"
           />
-          <p className="section-copy max-w-2xl">
-            Five things every Nexmogen engagement is held to, whatever the
-            brief happens to be called.
-          </p>
+          <ScrollCopy
+            className="section-copy max-w-2xl"
+            text="Five things every Nexmogen engagement is held to, whatever the brief happens to be called."
+          />
         </Reveal>
 
         <div

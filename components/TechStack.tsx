@@ -1,4 +1,6 @@
 import Reveal from "@/components/Reveal";
+import ScrollCopy from "@/components/scroll/ScrollCopy";
+import VelocityMarquee from "@/components/scroll/VelocityMarquee";
 import TextReveal from "@/components/TextReveal";
 
 const ROWS = [
@@ -35,25 +37,17 @@ const ROWS = [
 ];
 
 function Row({ items, reverse }: { items: string[]; reverse?: boolean }) {
-  const loop = [...items, ...items];
-
   return (
-    <div className="group overflow-hidden">
-      <div
-        className={`flex w-max items-center gap-4 ${
-          reverse ? "animate-marquee-reverse" : "animate-marquee"
-        } group-hover:[animation-play-state:paused]`}
-      >
-        {loop.map((item, i) => (
-          <span
-            key={`${item}-${i}`}
-            className="whitespace-nowrap rounded-full border border-white/10 bg-white/[0.04] px-5 py-2.5 text-sm font-medium text-white/60 backdrop-blur-sm transition-colors duration-300 hover:border-primary-light/40 hover:text-white"
-          >
-            {item}
-          </span>
-        ))}
-      </div>
-    </div>
+    <VelocityMarquee speed={reverse ? 2.4 : 3.2} reverse={reverse}>
+      {items.map((item) => (
+        <span
+          key={item}
+          className="mr-4 whitespace-nowrap rounded-full border border-white/10 bg-white/[0.04] px-5 py-2.5 text-sm font-medium text-white/60 backdrop-blur-sm transition-colors duration-300 hover:border-primary-light/40 hover:text-white"
+        >
+          {item}
+        </span>
+      ))}
+    </VelocityMarquee>
   );
 }
 
@@ -68,10 +62,10 @@ export default function TechStack() {
             highlight="merit"
             className="section-title"
           />
-          <p className="section-copy">
-            We pick the technology that fits the problem — then keep it boring,
-            documented, and easy for your team to inherit.
-          </p>
+          <ScrollCopy
+            className="section-copy"
+            text="We pick the technology that fits the problem — then keep it boring, documented, and easy for your team to inherit."
+          />
         </Reveal>
       </div>
 

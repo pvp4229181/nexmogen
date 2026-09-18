@@ -4,6 +4,7 @@ import { useRef } from "react";
 import { MotionValue, motion, useScroll, useSpring, useTransform } from "framer-motion";
 import TextReveal from "@/components/TextReveal";
 import Reveal from "@/components/Reveal";
+import ScrollCopy from "@/components/scroll/ScrollCopy";
 
 const steps = [
   {
@@ -119,10 +120,10 @@ export default function ProcessSection() {
             highlight="Process"
             className="section-title"
           />
-          <p className="section-copy">
-            A clear, collaborative path that keeps every project focused,
-            transparent, and moving toward measurable results.
-          </p>
+          <ScrollCopy
+            className="section-copy"
+            text="A clear, collaborative path that keeps every project focused, transparent, and moving toward measurable results."
+          />
         </Reveal>
 
         <div ref={rowRef} className="relative mt-16 lg:mt-24">

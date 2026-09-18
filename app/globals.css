@@ -66,6 +66,19 @@ textarea {
   @apply relative w-full max-w-full overflow-hidden py-16 sm:py-20 lg:py-24;
 }
 
+/*
+ * Same geometry as .section, but it never becomes a scroll container:
+ * `overflow: hidden` would make it the nearest scrollport for any
+ * position: sticky descendant, and since it does not itself scroll, the
+ * sticky would never engage. Clipping only the x axis still contains the
+ * decorative bleed without that side effect.
+ */
+.section-flow {
+  @apply relative w-full max-w-full py-16 sm:py-20 lg:py-24;
+  overflow-x: clip;
+  overflow-y: visible;
+}
+
 .section-grid {
   background-image:
     linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
@@ -101,6 +114,10 @@ textarea {
 
 .btn-ghost {
   @apply inline-flex min-h-12 max-w-full items-center justify-center whitespace-normal rounded-full border border-white/20 bg-white/[0.03] px-5 py-3 text-center text-sm font-semibold uppercase tracking-[0.08em] text-white backdrop-blur-md transition-all duration-300 hover:-translate-y-0.5 hover:border-primary-light/60 hover:bg-white/[0.08] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-light sm:px-7 sm:tracking-[0.12em];
+}
+
+.arrow-control {
+  @apply inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/20 bg-white/[0.03] text-white/80 backdrop-blur-md transition-all duration-300 hover:border-primary-light/60 hover:bg-white/[0.08] hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-light;
 }
 
 .card {

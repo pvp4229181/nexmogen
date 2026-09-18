@@ -3,6 +3,8 @@ import { FiArrowUpRight, FiCheck, FiTarget } from "react-icons/fi";
 import CtaSection from "@/components/CtaSection";
 import PageHero from "@/components/PageHero";
 import Reveal from "@/components/Reveal";
+import StickyStack from "@/components/scroll/StickyStack";
+import ScrollCopy from "@/components/scroll/ScrollCopy";
 import SpotlightCard from "@/components/SpotlightCard";
 import TabletFrame from "@/components/TabletFrame";
 import { caseStudies } from "@/lib/case-studies";
@@ -35,7 +37,7 @@ export default function CaseStudiesPage() {
         ctaHref="/contact"
       />
 
-      <section className="section bg-ink">
+      <section className="section-flow bg-ink">
         <div className="pointer-events-none absolute right-0 top-0 h-96 w-96 rounded-full bg-primary/10 blur-3xl" />
         <div className="section-grid pointer-events-none absolute inset-0 opacity-30" />
         <div className="container-px relative mx-auto max-w-7xl">
@@ -44,21 +46,19 @@ export default function CaseStudiesPage() {
               <p className="eyebrow">{caseStudies.length} projects shipped</p>
               <h2 className="section-title">Built For Real Businesses</h2>
             </div>
-            <p className="section-copy max-w-2xl lg:ml-auto">
-              Schools, charitable trusts, D2C brands, production houses and
-              industrial suppliers. Different audiences, the same method:
-              understand how the customer actually decides, then build the site
-              around that decision.
-            </p>
+            <ScrollCopy
+              className="section-copy max-w-2xl lg:ml-auto"
+              text="Schools, charitable trusts, D2C brands, production houses and industrial suppliers. Different audiences, the same method: understand how the customer actually decides, then build the site around that decision."
+            />
           </Reveal>
 
-          <div className="mt-16 space-y-10 lg:mt-20 lg:space-y-16">
+          <StickyStack className="mt-16 space-y-10 lg:mt-20 lg:space-y-16">
             {caseStudies.map((study, i) => (
               <Reveal key={study.slug} delay={0.04}>
                 <SpotlightCard tilt={false}>
                   <article
                     id={study.slug}
-                    className="group relative scroll-mt-28 overflow-hidden rounded-[2rem] border border-white/10 bg-[linear-gradient(145deg,rgba(255,255,255,.055),rgba(255,255,255,.012))] shadow-2xl shadow-black/30 transition-colors duration-300 hover:border-primary/45 sm:rounded-[2.5rem]"
+                    className="group relative scroll-mt-28 overflow-hidden rounded-[2rem] border border-white/10 bg-ink bg-[linear-gradient(145deg,rgba(255,255,255,.055),rgba(255,255,255,.012))] shadow-2xl shadow-black/30 transition-colors duration-300 hover:border-primary/45 sm:rounded-[2.5rem]"
                   >
                     <div className="pointer-events-none absolute -right-20 top-0 h-72 w-72 rounded-full bg-primary/10 opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-100" />
 
@@ -188,7 +188,7 @@ export default function CaseStudiesPage() {
                 </SpotlightCard>
               </Reveal>
             ))}
-          </div>
+          </StickyStack>
         </div>
       </section>
 

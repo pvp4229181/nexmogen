@@ -4,6 +4,7 @@ import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { FiPlus } from "react-icons/fi";
 import Reveal from "@/components/Reveal";
+import ScrollCopy from "@/components/scroll/ScrollCopy";
 import TextReveal from "@/components/TextReveal";
 
 const FAQS = [
@@ -53,10 +54,10 @@ export default function FaqSection() {
               highlight="to know"
               className="section-title"
             />
-            <p className="section-copy">
-              Still unsure about something? A fifteen-minute call usually
-              answers it faster than an email thread.
-            </p>
+            <ScrollCopy
+              className="section-copy"
+              text="Still unsure about something? A fifteen-minute call usually answers it faster than an email thread."
+            />
           </Reveal>
 
           <div className="divide-y divide-white/10 border-y border-white/10">

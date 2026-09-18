@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
+import ScrollZoom from "@/components/scroll/ScrollZoom";
 import SpotlightCard from "@/components/SpotlightCard";
 import PageHero from "@/components/PageHero";
 import { getBlogPosts } from "@/lib/data";
@@ -42,7 +43,11 @@ export default async function BlogPage() {
                     href={`/blog/${post.slug}`}
                     className="card card-interactive group flex h-full flex-col overflow-hidden"
                   >
-                    <div className="relative aspect-video w-full overflow-hidden bg-surface">
+                    <ScrollZoom
+                      className="relative aspect-video w-full bg-surface"
+                      from={1.16}
+                      drift={14}
+                    >
                       {post.imageUrl ? (
                         <Image
                           src={post.imageUrl}
@@ -52,7 +57,7 @@ export default async function BlogPage() {
                           className="object-cover transition-transform duration-500 group-hover:scale-105"
                         />
                       ) : null}
-                    </div>
+                    </ScrollZoom>
 
                     <div className="flex flex-1 flex-col p-7 sm:p-8">
                       <p className="text-xs font-medium uppercase tracking-wide text-primary-light">

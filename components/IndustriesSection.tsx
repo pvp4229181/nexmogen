@@ -1,4 +1,6 @@
 import Reveal from "@/components/Reveal";
+import ScrollCopy from "@/components/scroll/ScrollCopy";
+import HorizontalRail from "@/components/scroll/HorizontalRail";
 import TextReveal from "@/components/TextReveal";
 import SpotlightCard from "@/components/SpotlightCard";
 import {
@@ -25,49 +27,52 @@ const INDUSTRIES = [
 
 export default function IndustriesSection() {
   return (
-    <section className="section bg-surface">
+    <section className="section-flow bg-surface">
       <div className="pointer-events-none absolute -left-40 top-20 h-96 w-96 rounded-full bg-primary/10 blur-3xl" />
 
-      <div className="container-px relative mx-auto max-w-7xl">
-        <Reveal className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
-          <div>
-            <p className="eyebrow">Industries</p>
-            <TextReveal
-              text="Where our work already lives"
-              highlight="lives"
-              className="section-title"
-            />
+      <div className="pt-4">
+      <HorizontalRail
+        className="mt-12 px-5 sm:px-10 lg:px-16 xl:px-20"
+        ariaLabel="Industries we work in"
+        header={
+          <div className="container-px relative mx-auto max-w-7xl">
+            <Reveal className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
+              <div>
+                <p className="eyebrow">Industries</p>
+                <TextReveal
+                  text="Where our work already lives"
+                  highlight="lives"
+                  className="section-title"
+                />
+              </div>
+              <ScrollCopy
+                className="section-copy max-w-2xl lg:ml-auto"
+                text="We have shipped in enough sectors to know the difference between a generic build and one that understands how your customers actually buy, book, or learn."
+              />
+            </Reveal>
           </div>
-          <p className="section-copy max-w-2xl lg:ml-auto">
-            We have shipped in enough sectors to know the difference between a
-            generic build and one that understands how your customers actually
-            buy, book, or learn.
-          </p>
-        </Reveal>
-
-        <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:mt-16 lg:grid-cols-4">
-          {INDUSTRIES.map((industry, i) => {
-            const Icon = industry.icon;
-            return (
-              <Reveal
-                key={industry.name}
-                delay={(i % 4) * 0.09}
-                direction="scale"
-                className="h-full"
-              >
-                <SpotlightCard className="card card-interactive h-full p-6">
-                  <Icon className="text-2xl text-primary-light" />
-                  <h3 className="mt-6 font-display text-lg font-semibold text-white">
-                    {industry.name}
-                  </h3>
-                  <p className="mt-2 text-sm leading-6 text-white/50">
-                    {industry.note}
-                  </p>
-                </SpotlightCard>
-              </Reveal>
-            );
-          })}
-        </div>
+        }
+      >
+        {INDUSTRIES.map((industry) => {
+          const Icon = industry.icon;
+          return (
+            <SpotlightCard
+              key={industry.name}
+              className="w-[248px] shrink-0 snap-start sm:w-[300px]"
+            >
+              <article className="card card-interactive flex h-full min-h-[210px] flex-col p-6">
+                <Icon className="text-2xl text-primary-light" />
+                <h3 className="mt-6 font-display text-lg font-semibold text-white">
+                  {industry.name}
+                </h3>
+                <p className="mt-2 text-sm leading-6 text-white/50">
+                  {industry.note}
+                </p>
+              </article>
+            </SpotlightCard>
+          );
+        })}
+      </HorizontalRail>
       </div>
     </section>
   );

@@ -1,15 +1,11 @@
 "use client";
 
-import dynamic from "next/dynamic";
 import Counter from "@/components/Counter";
-import Reveal from "@/components/Reveal";
-import TextReveal from "@/components/TextReveal";
 import Parallax from "@/components/Parallax";
-import SceneGate from "@/components/three/SceneGate";
-
-const MomentumCanvas = dynamic(() => import("@/components/three/MomentumCanvas"), {
-  ssr: false,
-});
+import Reveal from "@/components/Reveal";
+import ScrollCopy from "@/components/scroll/ScrollCopy";
+import TextReveal from "@/components/TextReveal";
+import WebAnimation from "@/components/WebAnimationShowcase";
 
 const NUMBERS = [
   { value: 130, suffix: "+", label: "Projects delivered", note: "Across web, AI, SaaS and mobile" },
@@ -18,14 +14,12 @@ const NUMBERS = [
   { value: 24, suffix: "/7", label: "Support coverage", note: "Monitoring that does not clock off" },
 ];
 
-const FALLBACK_BARS = [28, 38, 52, 45, 68, 82, 100];
-
 export default function StatsBand() {
   return (
     <section className="section bg-surface">
       <div className="pointer-events-none absolute -right-32 top-1/4 h-[28rem] w-[28rem] rounded-full bg-primary/10 blur-3xl" />
 
-      <div className="container-px relative mx-auto grid max-w-7xl gap-14 lg:grid-cols-[1fr_0.85fr] lg:items-center">
+      <div className="container-px relative mx-auto grid max-w-7xl gap-14 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
         <div>
           <Reveal>
             <p className="eyebrow">By the numbers</p>
@@ -34,10 +28,10 @@ export default function StatsBand() {
               highlight="measure"
               className="section-title"
             />
-            <p className="section-copy max-w-xl">
-              Every engagement is judged on the same thing: does it move the
-              business forward? Here is what that has added up to so far.
-            </p>
+            <ScrollCopy
+              className="section-copy max-w-xl"
+              text="Every engagement is judged on the same thing: does it move the business forward? Here is what that has added up to so far."
+            />
           </Reveal>
 
           <div className="mt-12 grid gap-px overflow-hidden rounded-3xl border border-white/10 bg-white/[0.06] sm:grid-cols-2">
@@ -59,26 +53,11 @@ export default function StatsBand() {
           </div>
         </div>
 
-        <Parallax speed={60} className="mx-auto w-full max-w-md">
-        <SceneGate
-          className="relative mx-auto aspect-[5/4] w-full max-w-md sm:aspect-square"
-          fallback={
-            <div className="absolute inset-0 flex items-end gap-2 px-8 pb-10" aria-hidden="true">
-              <div className="absolute inset-x-7 bottom-9 h-px bg-primary/35" />
-              <div className="absolute bottom-9 left-7 h-[72%] w-px bg-primary/35" />
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_45%,rgba(229,9,20,0.2),transparent_50%)]" />
-              {FALLBACK_BARS.map((height, index) => (
-                <div
-                  key={height}
-                  className="relative z-10 flex-1 rounded-t-sm border border-primary-light/20 bg-gradient-to-t from-primary-dark to-primary shadow-[0_0_18px_rgba(229,9,20,0.18)]"
-                  style={{ height: `${height * 0.58}%`, opacity: 0.58 + index * 0.06 }}
-                />
-              ))}
-            </div>
-          }
-        >
-          <MomentumCanvas />
-        </SceneGate>
+        {/* Drifts against the scroll so it separates from the number grid. */}
+        <Parallax speed={54} className="mx-auto w-full max-w-2xl lg:max-w-none">
+          <Reveal direction="left">
+            <WebAnimation variant="development" />
+          </Reveal>
         </Parallax>
       </div>
     </section>
