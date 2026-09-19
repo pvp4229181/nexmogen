@@ -41,7 +41,7 @@ export default function Navbar() {
   const navColor = (href: string) => isActive(href) ? "text-primary-light" : "text-white/80";
 
   return <header onFocus={() => setTucked(false)} className={`fixed inset-x-0 top-0 z-50 w-full max-w-full border-b transition-all duration-300 ${tucked ? "-translate-y-full" : "translate-y-0"} ${open || scrolled ? "border-white/[0.08] bg-ink/85 shadow-lg shadow-black/30 backdrop-blur-xl" : "border-transparent bg-transparent backdrop-blur-none"}`}>
-    <nav className={`container-px mx-auto flex min-w-0 max-w-[1500px] items-center justify-between gap-4 transition-all duration-300 ${scrolled ? "h-16 lg:h-20" : "h-20 lg:h-24"}`}>
+    <nav className={`container-px flex w-full min-w-0 max-w-full items-center justify-between gap-4 transition-all duration-300 ${scrolled ? "h-16 lg:h-20" : "h-20 lg:h-24"}`}>
       <Link href="/" aria-label="Nexmogen home" className="min-w-0 shrink">
         <Image src="/nexmogen-logo.png" alt="Nexmogen" width={2089} height={753} preload className="h-auto w-[175px] sm:w-[195px]" />
       </Link>
