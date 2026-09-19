@@ -104,12 +104,10 @@ export default function CaseStudiesPage() {
                       </div>
 
                       <div className="relative flex flex-col p-7 sm:p-10 lg:col-span-7 lg:p-12">
-                        <div className="flex flex-wrap items-center gap-3">
+                        <div>
                           <span className="text-xs font-semibold uppercase tracking-[0.16em] text-primary-light">
                             {study.category}
                           </span>
-                          <span className="h-px w-10 bg-primary/60" />
-                          <span className="text-xs uppercase tracking-[0.16em] text-white/35">Selected work</span>
                         </div>
 
                         <h3 className="mt-6 max-w-xl break-words font-display text-3xl font-bold tracking-[-0.04em] text-white sm:text-4xl lg:text-5xl">

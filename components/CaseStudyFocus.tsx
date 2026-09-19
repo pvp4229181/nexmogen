@@ -3,8 +3,8 @@
 import { useEffect } from "react";
 
 /**
- * Deep-links from the portfolio carousel (`/case-studies#slug`) into a single
- * case study card, and keeps that card marked while it is the active one.
+ * Deep-links from the portfolio carousel (`/case-studies#slug`) to the chosen
+ * case study card while leaving the full stack available to scroll through.
  *
  * The native anchor jump is not good enough here for two reasons:
  *
@@ -61,7 +61,6 @@ export default function CaseStudyFocus({ slugs }: { slugs: string[] }) {
       document.querySelectorAll<HTMLElement>("[data-case-study]").forEach((el) => {
         const focused = el.id === slug;
         el.toggleAttribute("data-focused", focused);
-        el.closest<HTMLElement>("[data-sticky-card]")?.toggleAttribute("hidden", Boolean(slug) && !focused);
       });
     }
 
