@@ -1,11 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { FiArrowDown, FiArrowRight } from "react-icons/fi";
 import Counter from "@/components/Counter";
-import HeroControls from "@/components/hero/HeroControls";
 import HeroNodeField from "@/components/hero/HeroNodeField";
 import ScrollAway from "@/components/scroll/ScrollAway";
 
@@ -32,27 +31,20 @@ export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
   const reduceMotion = useReducedMotion();
   const [index, setIndex] = useState(0);
-  const [paused, setPaused] = useState(false);
   const slide = SLIDES[index];
 
-  const go = useCallback((next: number) => setIndex((next + SLIDES.length) % SLIDES.length), []);
-  const step = useCallback((delta: number) => {
-    setPaused(true);
-    go(index + delta);
-  }, [go, index]);
-
   useEffect(() => {
-    if (paused || reduceMotion) return;
-    const id = setTimeout(() => go(index + 1), SLIDE_MS);
-    return () => clearTimeout(id);
-  }, [go, index, paused, reduceMotion]);
+    if (reduceMotion) return;
+    const id = setInterval(() => setIndex((current) => (current + 1) % SLIDES.length), SLIDE_MS);
+    return () => clearInterval(id);
+  }, [reduceMotion]);
 
   const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start start", "end start"] });
   const fieldY = useTransform(scrollYProgress, [0, 1], ["0%", "12%"]);
   const fieldScale = useTransform(scrollYProgress, [0, 1], [1, 1.08]);
 
   return (
-    <section ref={sectionRef} onFocusCapture={() => setPaused(true)} className="relative min-h-[860px] w-full overflow-hidden bg-[#080304] sm:min-h-[900px] lg:min-h-[980px]">
+    <section ref={sectionRef} className="relative min-h-[780px] w-full overflow-hidden bg-[#080304] sm:min-h-[820px] lg:min-h-[860px]">
       <div className="hero-sdlc-glow pointer-events-none absolute inset-0" aria-hidden="true" />
       <div className="hero-sdlc-grid pointer-events-none absolute inset-0" aria-hidden="true" />
 
@@ -65,9 +57,7 @@ export default function Hero() {
       </motion.div>
 
       <ScrollAway trackRef={sectionRef} className="relative z-10">
-        <div className="container-px mx-auto flex min-h-[860px] max-w-[1500px] flex-col pt-28 sm:min-h-[900px] sm:pt-32 lg:min-h-[980px] lg:pt-36">
-          <HeroControls count={SLIDES.length} index={index} paused={paused} duration={SLIDE_MS} showProgress={!reduceMotion} onSelect={(i) => { setPaused(true); go(i); }} onPrev={() => step(-1)} onNext={() => step(1)} onTogglePause={() => setPaused((value) => !value)} />
-
+        <div className="container-px mx-auto flex min-h-[780px] max-w-[1500px] flex-col pt-24 sm:min-h-[820px] sm:pt-24 lg:min-h-[860px] lg:pt-28">
           <div className="flex flex-1 items-center py-14 sm:py-16 lg:py-12">
             <div className="w-full max-w-[1100px]">
               <AnimatePresence mode="wait">

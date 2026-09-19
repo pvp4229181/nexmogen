@@ -40,6 +40,9 @@ function StickyCard({
 
   return (
     <div
+      // Tagged so a deep link can measure the card's natural position with the
+      // pinning switched off — see components/CaseStudyFocus.tsx.
+      data-sticky-card=""
       className="lg:sticky"
       style={{ top: `${top + Math.min(index, 4) * 12}px` }}
     >

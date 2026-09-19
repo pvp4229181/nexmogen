@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { FiArrowUpRight, FiCheck, FiTarget } from "react-icons/fi";
+import CaseStudyFocus from "@/components/CaseStudyFocus";
 import CtaSection from "@/components/CtaSection";
 import PageHero from "@/components/PageHero";
 import Reveal from "@/components/Reveal";
@@ -25,6 +26,7 @@ const GRADIENTS = [
 export default function CaseStudiesPage() {
   return (
     <>
+      <CaseStudyFocus slugs={caseStudies.map((study) => study.slug)} />
       <PageHero
         eyebrow="Work in detail"
         title={
@@ -58,6 +60,7 @@ export default function CaseStudiesPage() {
                 <SpotlightCard tilt={false}>
                   <article
                     id={study.slug}
+                    data-case-study=""
                     className="group relative scroll-mt-28 overflow-hidden rounded-[2rem] border border-white/10 bg-ink bg-[linear-gradient(145deg,rgba(255,255,255,.055),rgba(255,255,255,.012))] shadow-2xl shadow-black/30 transition-colors duration-300 hover:border-primary/45 sm:rounded-[2.5rem]"
                   >
                     <div className="pointer-events-none absolute -right-20 top-0 h-72 w-72 rounded-full bg-primary/10 opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-100" />

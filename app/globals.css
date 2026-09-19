@@ -206,30 +206,6 @@ textarea {
   mix-blend-mode: overlay;
 }
 
-/* Autoplay progress inside the hero's active carousel dot. Keyed on the slide
-   index in HeroControls so it restarts on every advance, and paused rather
-   than hidden while autoplay is stopped. */
-.hero-dot-fill {
-  transform-origin: left center;
-  animation: hero-dot-fill linear forwards;
-}
-
-@keyframes hero-dot-fill {
-  from {
-    transform: scaleX(0);
-  }
-  to {
-    transform: scaleX(1);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .hero-dot-fill {
-    animation: none;
-    transform: none;
-  }
-}
-
 /* ---------- Hero workflow canvas ---------- */
 
 /* Every animation below runs on the same 9s cycle as the packets in
@@ -379,6 +355,48 @@ textarea {
     rgba(229, 9, 20, 0.18),
     transparent 62%
   );
+}
+
+/* ---------- Deep-linked case study card ---------- */
+
+/*
+ * A pinned card reports its stuck position, not the one it holds in the flow.
+ * CaseStudyFocus flips this on for a single measurement so a deep link can read
+ * the real position, then flips it straight back off.
+ */
+[data-anchor-measuring] [data-sticky-card] {
+  position: static !important;
+}
+
+/* The card a deep link landed on stays marked while its hash is the active one. */
+[data-case-study][data-focused] {
+  border-color: rgba(229, 9, 20, 0.55);
+  box-shadow:
+    0 0 0 1px rgba(229, 9, 20, 0.35),
+    0 30px 90px -30px rgba(229, 9, 20, 0.5),
+    0 25px 50px -12px rgba(0, 0, 0, 0.35);
+}
+
+[data-case-study][data-focused]::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border-radius: inherit;
+  pointer-events: none;
+  /* Inset: the card clips its overflow, so an outer ring would be cut away. */
+  box-shadow: inset 0 0 0 2px rgba(255, 77, 87, 0.75);
+  animation: case-study-lock 1.5s ease-out 2 forwards;
+  opacity: 0;
+}
+
+@keyframes case-study-lock {
+  0% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0;
+  }
 }
 
 /* ---------- Ambient motion ---------- */

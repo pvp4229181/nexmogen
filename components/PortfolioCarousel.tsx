@@ -24,25 +24,46 @@ export default function PortfolioCarousel({ projects }: { projects: IProject[] }
   const [paused, setPaused] = useState(false);
   const [inView, setInView] = useState(false);
 
+  const syncActiveFromScroll = useCallback(() => {
+    const track = trackRef.current;
+    const firstCard = cardRefs.current[0];
+    if (!track || !firstCard) return;
+
+    const start = firstCard.offsetLeft;
+    const maxScroll = track.scrollWidth - track.clientWidth;
+    let closestIndex = 0;
+    let closestDistance = Infinity;
+
+    cardRefs.current.forEach((card, index) => {
+      if (!card) return;
+      const target = Math.min(card.offsetLeft - start, maxScroll);
+      const distance = Math.abs(track.scrollLeft - target);
+      if (distance <= closestDistance) {
+        closestDistance = distance;
+        closestIndex = index;
+      }
+    });
+
+    setActive(closestIndex);
+  }, []);
+
   useEffect(() => {
     const track = trackRef.current;
     if (!track) return;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const index = cardRefs.current.findIndex((el) => el === entry.target);
-            if (index !== -1) setActive(index);
-          }
-        });
-      },
-      { root: track, threshold: 0.6 }
-    );
+    let frame = 0;
+    const onScroll = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(syncActiveFromScroll);
+    };
 
-    cardRefs.current.forEach((el) => el && observer.observe(el));
-    return () => observer.disconnect();
-  }, [projects.length]);
+    syncActiveFromScroll();
+    track.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      cancelAnimationFrame(frame);
+      track.removeEventListener("scroll", onScroll);
+    };
+  }, [projects.length, syncActiveFromScroll]);
 
   /** Only auto-scroll while the rail is actually on screen. */
   useEffect(() => {
@@ -106,7 +127,8 @@ export default function PortfolioCarousel({ projects }: { projects: IProject[] }
         onFocusCapture={() => setPaused(true)}
         onBlurCapture={() => setPaused(false)}
         onPointerDown={() => setPaused(true)}
-        onTouchStart={() => setPaused(true)}
+        onPointerUp={(event) => event.pointerType !== "mouse" && setPaused(false)}
+        onPointerCancel={() => setPaused(false)}
         className="flex max-w-full snap-x snap-mandatory gap-4 overflow-x-auto overscroll-x-contain scroll-smooth pb-4 sm:gap-5 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
       >
         {projects.map((project, i) => {
@@ -183,25 +205,26 @@ export default function PortfolioCarousel({ projects }: { projects: IProject[] }
             type="button"
             aria-label="Previous project"
             onClick={() => step(-1)}
-            className="arrow-control"
+            className="arrow-control !h-11 !w-11"
           >
             <FiArrowLeft />
           </button>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-0.5">
             {projects.map((project, i) => (
               <button
                 key={project.name}
                 type="button"
                 aria-label={`Go to project ${i + 1}`}
+                aria-current={active === i ? "true" : undefined}
                 onClick={() => {
                   setActive(i);
                   scrollToIndex(i);
                 }}
-                className={`h-1.5 rounded-full transition-all ${
-                  active === i ? "w-6 bg-primary" : "w-1.5 bg-white/20"
-                }`}
-              />
+                className={`group flex h-11 items-center justify-center transition-all ${active === i ? "w-8" : "w-4"}`}
+              >
+                <span className={`h-1.5 rounded-full transition-all ${active === i ? "w-6 bg-primary" : "w-1.5 bg-white/20 group-hover:bg-white/45"}`} />
+              </button>
             ))}
           </div>
 
@@ -209,7 +232,7 @@ export default function PortfolioCarousel({ projects }: { projects: IProject[] }
             type="button"
             aria-label="Next project"
             onClick={() => step(1)}
-            className="arrow-control"
+            className="arrow-control !h-11 !w-11"
           >
             <FiArrowRight />
           </button>

@@ -92,7 +92,7 @@ export default function HorizontalRail({
       <div
         className={
           pinned
-            ? "sticky top-0 flex h-screen flex-col justify-center overflow-hidden"
+            ? "sticky top-20 flex h-[calc(100vh-5rem)] flex-col justify-start overflow-hidden pt-6"
             : ""
         }
       >

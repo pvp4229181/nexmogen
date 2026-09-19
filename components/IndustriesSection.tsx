@@ -27,10 +27,9 @@ const INDUSTRIES = [
 
 export default function IndustriesSection() {
   return (
-    <section className="section-flow bg-surface">
+    <section className="section-flow bg-surface !pt-0">
       <div className="pointer-events-none absolute -left-40 top-20 h-96 w-96 rounded-full bg-primary/10 blur-3xl" />
 
-      <div className="pt-4">
       <HorizontalRail
         className="mt-12 px-5 sm:px-10 lg:px-16 xl:px-20"
         ariaLabel="Industries we work in"
@@ -73,7 +72,6 @@ export default function IndustriesSection() {
           );
         })}
       </HorizontalRail>
-      </div>
     </section>
   );
 }

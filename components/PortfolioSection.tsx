@@ -7,7 +7,7 @@ import { IProject } from "@/models/Project";
 
 export default function PortfolioSection({ projects }: { projects: IProject[] }) {
   return (
-    <section className="section bg-surface">
+    <section className="section bg-surface !pb-0">
       <div className="pointer-events-none absolute -left-40 top-1/3 h-96 w-96 rounded-full bg-primary/10 blur-3xl" />
       <div className="container-px relative mx-auto max-w-7xl">
         <Reveal className="max-w-3xl">

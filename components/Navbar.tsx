@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
@@ -21,9 +22,11 @@ export default function Navbar() {
   const heroNav = pathname === "/" && !scrolled && !open;
   const navColor = (href: string) => isActive(href) ? "text-primary-light" : "text-white/80";
 
-  return <header className={`fixed inset-x-0 top-0 z-50 w-full max-w-full border-b transition-all duration-300 ${scrolled || open ? "border-white/[0.08] bg-ink/85 shadow-lg shadow-black/30 backdrop-blur-xl" : "border-transparent bg-transparent backdrop-blur-none"}`}>
+  return <header className={`fixed inset-x-0 top-0 z-50 w-full max-w-full border-b transition-all duration-300 ${open ? "border-white/[0.08] bg-ink/85 shadow-lg shadow-black/30 backdrop-blur-xl" : "border-transparent bg-transparent backdrop-blur-none"}`}>
     <nav className={`container-px mx-auto flex min-w-0 max-w-[1500px] items-center justify-between gap-4 transition-all duration-300 ${scrolled ? "h-16 lg:h-20" : "h-20 lg:h-24"}`}>
-      <Link href="/" className="min-w-0 shrink font-display text-xl font-bold tracking-[-0.04em] text-white sm:text-2xl">Nexmo<span className="text-primary-light">gen</span><span className="text-accent">.</span></Link>
+      <Link href="/" aria-label="Nexmogen home" className="min-w-0 shrink">
+        <Image src="/nexmogen-logo.png" alt="Nexmogen" width={2089} height={753} preload className="h-auto w-[175px] sm:w-[195px]" />
+      </Link>
       <ul className="hidden items-center gap-7 lg:flex">
         {links.map(link => <li key={link.href}><Link href={link.href} className={`text-sm font-medium transition-colors hover:text-white ${navColor(link.href)}`}>{link.label}</Link></li>)}
         <li className="relative" onMouseEnter={() => setServicesOpen(true)} onMouseLeave={() => setServicesOpen(false)}><Link href="/services" className={`flex items-center gap-1 text-sm font-medium transition-colors hover:text-white ${navColor("/services")}`}>Services<FiChevronDown className={`transition-transform ${servicesOpen ? "rotate-180" : ""}`} /></Link><AnimatePresence>{servicesOpen && <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 8 }} transition={{ duration: .18, ease: "easeOut" }} className="absolute left-1/2 top-full z-[60] w-72 -translate-x-1/2 pt-4"><div className="overflow-hidden rounded-2xl border border-white/10 bg-surface/95 p-2 shadow-2xl shadow-black/60 backdrop-blur-xl">{services.map(service => <Link key={service.slug} href={`/services/${service.slug}`} className={`block rounded-xl px-4 py-3 text-sm transition-colors hover:bg-white/5 hover:text-white ${isActive(`/services/${service.slug}`) ? "text-primary-light" : "text-white/80"}`}>{service.title}</Link>)}</div></motion.div>}</AnimatePresence></li>
