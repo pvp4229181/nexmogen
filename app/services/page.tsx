@@ -8,7 +8,7 @@ import SpotlightCard from "@/components/SpotlightCard";
 import { services } from "@/lib/services";
 
 export const metadata: Metadata = {
-  title: "Services | Nexmogen",
+  title: "Services",
   description: "Website development, AI agents, SaaS software, CRM solutions, digital marketing, and mobile app development from Nexmogen.",
 };
 

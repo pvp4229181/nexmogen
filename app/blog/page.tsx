@@ -9,7 +9,7 @@ import { getBlogPosts } from "@/lib/data";
 import { FiArrowRight } from "react-icons/fi";
 
 export const metadata: Metadata = {
-  title: "Blog | Nexmogen",
+  title: "Blog",
   description: "Insights on web development, AI, SaaS, and digital growth from the Nexmogen team.",
 };
 

@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
-import { FiCheck } from "react-icons/fi";
 import Reveal from "@/components/Reveal";
 import SpotlightCard from "@/components/SpotlightCard";
 import CtaSection from "@/components/CtaSection";
@@ -19,7 +17,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const service = getServiceBySlug(slug);
   if (!service) return {};
-  return { title: `${service.title} | Nexmogen`, description: service.description };
+  return { title: service.title, description: service.description };
 }
 
 export default async function ServiceDetailPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -83,17 +81,6 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
       <div className="container-px relative mx-auto grid max-w-7xl gap-10 lg:grid-cols-[.7fr_1.3fr] lg:items-center">
         <Reveal><p className="eyebrow">Technology we use</p><h2 className="mt-5 font-display text-3xl font-bold text-white sm:text-4xl">The right tools for the job.</h2></Reveal>
         <Reveal delay={.1} className="flex flex-wrap gap-3 lg:justify-end">{service.techStack.map((tech, index) => <span key={tech} className="inline-flex min-h-12 items-center gap-3 rounded-full border border-white/10 bg-white/[.04] px-5 text-sm font-medium text-white/70 transition-colors hover:border-primary/50 hover:bg-primary/10 hover:text-white"><small className="font-mono text-[10px] text-primary-light">{String(index + 1).padStart(2, "0")}</small>{tech}</span>)}</Reveal>
-      </div>
-    </section>}
-
-    {service.pricing && <section className="section bg-surface">
-      <div className="container-px mx-auto max-w-7xl">
-        <Reveal className="grid gap-8 lg:grid-cols-[.8fr_1.2fr] lg:items-end"><div><p className="eyebrow">Pricing</p><h2 className="section-title">Plans for {service.title}</h2></div><p className="section-copy max-w-xl lg:ml-auto">Choose the starting point that matches your current stage. Every plan can be tailored after discovery.</p></Reveal>
-        <div className="mt-14 grid gap-5 lg:grid-cols-3">
-          {service.pricing.map((plan, index) => <Reveal key={plan.name} delay={index * .1} className="h-full"><SpotlightCard className="h-full"><article className={`relative flex h-full min-h-[430px] flex-col overflow-hidden rounded-[2rem] border p-8 ${plan.popular ? "border-primary/60 bg-[linear-gradient(155deg,rgba(229,9,20,.2),rgba(255,255,255,.025))] shadow-2xl shadow-primary/10" : "border-white/10 bg-white/[.035]"}`}>
-            <span className="absolute right-7 top-6 font-mono text-xs text-white/30">0{index + 1}</span>{plan.popular && <span className="mb-6 w-fit rounded-full bg-primary px-4 py-1.5 text-xs font-semibold uppercase tracking-[.12em] text-white">Most Popular</span>}<h3 className="font-display text-2xl font-semibold text-white">{plan.name}</h3><p className="mt-5"><span className="font-display text-4xl font-bold text-white">{plan.price}</span>{plan.period && <span className="ml-1 text-sm text-white/50">{plan.period}</span>}</p><div className="my-7 h-px bg-white/10" /><ul className="flex-1 space-y-3">{plan.features.map(feature => <li key={feature} className="flex items-start gap-3 text-sm text-white/70"><FiCheck className="mt-0.5 shrink-0 text-primary-light" />{feature}</li>)}</ul><Link href="/contact" className={plan.popular ? "btn-primary mt-8 w-full" : "btn-ghost mt-8 w-full"}>Get Started</Link>
-          </article></SpotlightCard></Reveal>)}
-        </div>
       </div>
     </section>}
 

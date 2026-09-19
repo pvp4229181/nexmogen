@@ -7,14 +7,6 @@ import {
   FiSmartphone,
 } from "react-icons/fi";
 
-export interface PricingTier {
-  name: string;
-  price: string;
-  period: string;
-  features: string[];
-  popular?: boolean;
-}
-
 export interface ServiceDetail {
   icon: typeof FiCode;
   slug: string;
@@ -26,7 +18,6 @@ export interface ServiceDetail {
   process: { title: string; description: string }[];
   techStack?: string[];
   stats?: { value: string; label: string }[];
-  pricing?: PricingTier[];
   ctaLabel: string;
 }
 
@@ -103,27 +94,6 @@ export const services: ServiceDetail[] = [
       { value: "60%", label: "Cost Reduction" },
       { value: "Weeks", label: "To Deploy" },
     ],
-    pricing: [
-      {
-        name: "Starter",
-        price: "$1,499",
-        period: "/month",
-        features: ["1 AI agent", "1,000 interactions/month", "Standard support"],
-      },
-      {
-        name: "Professional",
-        price: "$3,999",
-        period: "/month",
-        features: ["3 AI agents", "10,000 interactions/month", "Priority support"],
-        popular: true,
-      },
-      {
-        name: "Enterprise",
-        price: "Custom",
-        period: "",
-        features: ["Unlimited agents & interactions", "Dedicated support team", "Custom integrations"],
-      },
-    ],
     ctaLabel: "Book a Free Consultation",
   },
   {
@@ -152,11 +122,6 @@ export const services: ServiceDetail[] = [
     techStack: [
       "React", "Vue", "Angular", "Node.js", "Python", "Ruby", "Java",
       "PostgreSQL", "MongoDB", "Redis", "AWS", "Azure", "GCP",
-    ],
-    pricing: [
-      { name: "MVP", price: "$25K+", period: "3–4 months", features: ["Core feature set", "Single-tenant architecture", "Launch support"] },
-      { name: "Scale", price: "$75K+", period: "6–8 months", features: ["Multi-tenant architecture", "Billing & subscriptions", "CI/CD pipeline"], popular: true },
-      { name: "Enterprise", price: "Custom", period: "", features: ["Dedicated team", "Compliance & security hardening", "Ongoing scaling support"] },
     ],
     ctaLabel: "Schedule a Free Consultation",
   },
@@ -190,11 +155,6 @@ export const services: ServiceDetail[] = [
       { title: "Launch & Support", description: "Rollout, training, and ongoing support." },
     ],
     techStack: ["Gmail & Outlook", "Slack & Teams", "Shopify & WooCommerce", "Accounting tools"],
-    pricing: [
-      { name: "Starter", price: "$49", period: "/user/month", features: ["Lead & pipeline management", "Email integration", "Standard reporting"] },
-      { name: "Professional", price: "$89", period: "/user/month", features: ["Automation & workflows", "Predictive analytics", "Priority support"], popular: true },
-      { name: "Enterprise", price: "Custom", period: "", features: ["Custom integrations", "Dedicated onboarding", "SLA-backed support"] },
-    ],
     ctaLabel: "Book a Free Demo",
   },
   {
@@ -252,11 +212,6 @@ export const services: ServiceDetail[] = [
       { title: "Launch & Support", description: "App store deployment and long-term support." },
     ],
     techStack: ["React Native", "Flutter", "Swift", "Kotlin", "Firebase"],
-    pricing: [
-      { name: "MVP", price: "$15K+", period: "3 months support", features: ["Single platform", "Core feature set", "App store launch"] },
-      { name: "Professional", price: "$35K+", period: "6 months support", features: ["Cross-platform build", "Advanced features", "Priority support"], popular: true },
-      { name: "Enterprise", price: "Custom", period: "", features: ["Multi-platform", "White-label options", "Dedicated team"] },
-    ],
     ctaLabel: "Schedule a Free Consultation",
   },
 ];

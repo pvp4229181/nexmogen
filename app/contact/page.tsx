@@ -6,7 +6,7 @@ import PageHero from "@/components/PageHero";
 import { FiMapPin, FiMail, FiPhone } from "react-icons/fi";
 
 export const metadata: Metadata = {
-  title: "Contact | Nexmogen",
+  title: "Contact",
   description:
     "Get in touch with Nexmogen for premium business services — innovative design, custom development, and complete project solutions.",
 };

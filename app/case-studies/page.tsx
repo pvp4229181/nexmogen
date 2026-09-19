@@ -10,7 +10,7 @@ import TabletFrame from "@/components/TabletFrame";
 import { caseStudies } from "@/lib/case-studies";
 
 export const metadata: Metadata = {
-  title: "Case Studies | Nexmogen",
+  title: "Case Studies",
   description:
     "How Nexmogen builds websites, storefronts and platforms for schools, NGOs, D2C brands, travel companies and food businesses across India.",
 };

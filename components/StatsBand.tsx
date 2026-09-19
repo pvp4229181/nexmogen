@@ -1,11 +1,9 @@
 "use client";
 
 import Counter from "@/components/Counter";
-import Parallax from "@/components/Parallax";
 import Reveal from "@/components/Reveal";
 import ScrollCopy from "@/components/scroll/ScrollCopy";
 import TextReveal from "@/components/TextReveal";
-import WebAnimation from "@/components/WebAnimationShowcase";
 
 const NUMBERS = [
   { value: 130, suffix: "+", label: "Projects delivered", note: "Across web, AI, SaaS and mobile" },
@@ -19,7 +17,7 @@ export default function StatsBand() {
     <section className="section bg-surface">
       <div className="pointer-events-none absolute -right-32 top-1/4 h-[28rem] w-[28rem] rounded-full bg-primary/10 blur-3xl" />
 
-      <div className="container-px relative mx-auto grid max-w-7xl gap-14 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
+      <div className="container-px relative mx-auto max-w-7xl">
         <div>
           <Reveal>
             <p className="eyebrow">By the numbers</p>
@@ -34,7 +32,7 @@ export default function StatsBand() {
             />
           </Reveal>
 
-          <div className="mt-12 grid gap-px overflow-hidden rounded-3xl border border-white/10 bg-white/[0.06] sm:grid-cols-2">
+          <div className="mt-12 grid gap-px overflow-hidden rounded-3xl border border-white/10 bg-white/[0.06] sm:grid-cols-2 lg:grid-cols-4">
             {NUMBERS.map((stat, i) => (
               <Reveal key={stat.label} delay={i * 0.1} direction={i % 2 ? "left" : "right"}>
                 <div className="h-full bg-ink/80 p-7 transition-colors duration-300 hover:bg-primary/10">
@@ -53,12 +51,6 @@ export default function StatsBand() {
           </div>
         </div>
 
-        {/* Drifts against the scroll so it separates from the number grid. */}
-        <Parallax speed={54} className="mx-auto w-full max-w-2xl lg:max-w-none">
-          <Reveal direction="left">
-            <WebAnimation variant="development" />
-          </Reveal>
-        </Parallax>
       </div>
     </section>
   );

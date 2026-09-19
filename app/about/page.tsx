@@ -14,7 +14,7 @@ import Reveal from "@/components/Reveal";
 import SpotlightCard from "@/components/SpotlightCard";
 
 export const metadata: Metadata = {
-  title: "About | Nexmogen",
+  title: "About",
   description:
     "Nexmogen is a team of passionate creators and tech enthusiasts dedicated to delivering innovative digital solutions that drive business success.",
 };

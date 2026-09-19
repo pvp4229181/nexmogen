@@ -19,7 +19,7 @@ export async function generateMetadata({
   const post = await getBlogPostBySlug(slug);
   if (!post) return {};
   return {
-    title: `${post.title} | Nexmogen Blog`,
+    title: post.title,
     description: post.excerpt,
   };
 }

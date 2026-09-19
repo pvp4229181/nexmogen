@@ -87,6 +87,216 @@ textarea {
   mask-image: linear-gradient(to bottom, transparent, black 18%, black 82%, transparent);
 }
 
+/* ---------- Hero backdrop layers ---------- */
+
+.hero-sdlc-glow {
+  background:
+    radial-gradient(ellipse 42% 55% at 58% 32%, rgba(229, 9, 20, 0.3), transparent 72%),
+    radial-gradient(ellipse 34% 55% at 86% 18%, rgba(255, 23, 68, 0.18), transparent 72%),
+    radial-gradient(ellipse 34% 30% at 24% 80%, rgba(159, 7, 16, 0.28), transparent 76%),
+    linear-gradient(110deg, #080304 0%, #0d0507 58%, #050203 100%);
+}
+
+.hero-sdlc-grid {
+  opacity: 0.18;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 80px 80px;
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 22%, #000 82%, transparent);
+  mask-image: linear-gradient(to bottom, transparent, #000 22%, #000 82%, transparent);
+}
+
+.hero-spectrum-text {
+  color: transparent;
+  background: linear-gradient(100deg, #e50914 0%, #ff4d57 58%, #ffe5e7 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+.hero-workflow-mask {
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, transparent 28%, #000 58%);
+  mask-image: linear-gradient(to right, transparent 0%, transparent 28%, #000 58%);
+}
+
+.hero-ai-field {
+  --scene-glow: rgba(0, 153, 255, 0.13);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.2) 12%, #000 42%);
+  mask-image: linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.2) 12%, #000 42%);
+}
+
+.hero-ai-field[data-scene="1"] { --scene-glow: rgba(139, 92, 246, 0.15); }
+.hero-ai-field[data-scene="2"] { --scene-glow: rgba(34, 211, 238, 0.14); }
+.hero-ai-field[data-scene="3"] { --scene-glow: rgba(244, 63, 94, 0.14); }
+.hero-ai-field[data-scene="4"] { --scene-glow: rgba(16, 185, 129, 0.13); }
+
+.hero-ai-field::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 52% 60% at 72% 44%, var(--scene-glow), transparent 72%);
+  transition: background 550ms ease;
+}
+
+@media (max-width: 767px) {
+  .hero-ai-field {
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), transparent 76%);
+    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), transparent 76%);
+  }
+}
+
+.hero-btn-primary {
+  @apply inline-flex min-h-14 max-w-full cursor-pointer items-center justify-center rounded-full bg-gradient-to-r from-primary to-primary-light px-7 py-3 text-center text-sm font-semibold text-white shadow-lg shadow-primary/25 transition-shadow duration-200 hover:shadow-xl hover:shadow-primary/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-light;
+}
+
+.hero-btn-secondary {
+  @apply inline-flex min-h-14 max-w-full cursor-pointer items-center justify-center rounded-full border border-white/15 bg-white/[0.035] px-7 py-3 text-center text-sm font-medium text-white/85 backdrop-blur-md transition-colors duration-200 hover:border-primary-light/60 hover:bg-primary/10 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-light;
+}
+
+/* Dot field the hero node graph is drawn over, vignetted so it never reaches
+   the section edges. */
+.hero-dot-grid {
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.075) 1px, transparent 1px);
+  background-size: 26px 26px;
+  opacity: 0.55;
+  -webkit-mask-image: radial-gradient(ellipse 90% 70% at 50% 45%, #000 55%, transparent 90%);
+  mask-image: radial-gradient(ellipse 90% 70% at 50% 45%, #000 55%, transparent 90%);
+}
+
+/* Frosted slab under the centred hero copy. It blurs and darkens whatever the
+   node graph is doing behind the headline, then falls away at both edges so
+   the outer thirds of the animation stay sharp. Heaviest down the middle
+   because that is where the type sits. */
+.hero-plate-center {
+  -webkit-backdrop-filter: blur(24px) saturate(170%);
+  backdrop-filter: blur(24px) saturate(170%);
+  background: radial-gradient(
+    ellipse 70% 62% at 50% 50%,
+    rgba(5, 5, 6, 0.82) 0%,
+    rgba(12, 7, 10, 0.62) 42%,
+    rgba(16, 9, 12, 0.28) 68%,
+    transparent 100%
+  );
+  -webkit-mask-image: radial-gradient(ellipse 82% 78% at 50% 50%, #000 40%, transparent 92%);
+  mask-image: radial-gradient(ellipse 82% 78% at 50% 50%, #000 40%, transparent 92%);
+}
+
+/* Two offset brand blooms that cross behind the headline — one warm red from
+   the top-left, one pink from the upper-right — plus a low crimson wash to
+   keep the base of the section from going flat black. */
+.hero-mesh {
+  background-image:
+    radial-gradient(ellipse 52% 44% at 22% 8%, rgba(229, 9, 20, 0.34), transparent 62%),
+    radial-gradient(ellipse 46% 40% at 78% 2%, rgba(255, 23, 68, 0.26), transparent 60%),
+    radial-gradient(ellipse 80% 40% at 50% 104%, rgba(159, 7, 16, 0.22), transparent 70%);
+  filter: blur(58px);
+  opacity: 0.62;
+}
+
+/* Film grain over the blooms. Stacking two offset dot fields at different
+   sizes gives an irregular texture that breaks up the gradient banding a
+   large blurred radial leaves behind. */
+.hero-grain {
+  background-image:
+    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.055) 0.5px, transparent 0.5px),
+    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.035) 0.5px, transparent 0.5px);
+  background-size: 3px 3px, 7px 7px;
+  background-position: 0 0, 2px 3px;
+  opacity: 0.55;
+  mix-blend-mode: overlay;
+}
+
+/* Autoplay progress inside the hero's active carousel dot. Keyed on the slide
+   index in HeroControls so it restarts on every advance, and paused rather
+   than hidden while autoplay is stopped. */
+.hero-dot-fill {
+  transform-origin: left center;
+  animation: hero-dot-fill linear forwards;
+}
+
+@keyframes hero-dot-fill {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-dot-fill {
+    animation: none;
+    transform: none;
+  }
+}
+
+/* ---------- Hero workflow canvas ---------- */
+
+/* Every animation below runs on the same 9s cycle as the packets in
+   HeroWorkflow, which stagger themselves with animation-delay, so one pass of
+   the canvas reads as a single run of the workflow. */
+
+/* A node's ring flares as the packet lands on it, then fades. The lit window
+   is deliberately short — about a second out of nine — so the canvas stays a
+   backdrop rather than a light show. */
+.wf-ring {
+  opacity: 0;
+  filter: drop-shadow(0 0 10px rgba(255, 77, 87, 0.65));
+  animation: wf-ring 9s linear infinite;
+}
+
+@keyframes wf-ring {
+  0% {
+    opacity: 0;
+  }
+  2% {
+    opacity: 0.9;
+  }
+  11% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Capability links crawl continuously — they carry context to the agent the
+   whole time it runs, so unlike the edges they have no idle phase. */
+.wf-crawl {
+  stroke-dasharray: 5 9;
+  animation: wf-crawl 1.1s linear infinite;
+}
+
+@keyframes wf-crawl {
+  to {
+    stroke-dashoffset: -28;
+  }
+}
+
+/* Whole-canvas float, long and shallow enough to read as depth rather than
+   movement once the scroll parallax is also acting on it. */
+.wf-drift {
+  animation: wf-drift 14s ease-in-out infinite;
+}
+
+@keyframes wf-drift {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wf-ring,
+  .wf-crawl,
+  .wf-drift {
+    animation: none;
+  }
+}
+
 .eyebrow {
   @apply inline-flex max-w-full flex-wrap items-center gap-2 text-xs font-semibold uppercase leading-5 tracking-[0.18em] text-primary-light sm:tracking-[0.24em];
 }
