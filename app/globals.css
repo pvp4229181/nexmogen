@@ -128,6 +128,17 @@ textarea {
   font-size: min(7.15rem, 7cqw);
 }
 
+@media (max-width: 639px) {
+  .hero-headline {
+    font-size: clamp(2.75rem, 11vw, 4.25rem);
+  }
+
+  .hero-headline-line {
+    white-space: normal;
+    font-size: inherit;
+  }
+}
+
 .hero-workflow-mask {
   -webkit-mask-image: linear-gradient(to right, transparent 0%, transparent 28%, #000 58%);
   mask-image: linear-gradient(to right, transparent 0%, transparent 28%, #000 58%);
