@@ -25,8 +25,6 @@ const STATS = [
   { value: 98, suffix: "%", label: "Retention" },
 ];
 
-const CAPABILITIES = ["Websites", "AI Agents", "SaaS Platforms", "Mobile Apps"];
-
 export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
   const reduceMotion = useReducedMotion();
@@ -67,10 +65,9 @@ export default function Hero() {
                     {slide.eyebrow}
                   </p>
 
-                  <h1 className="mt-7 max-w-[1100px] text-balance font-display text-[clamp(2.65rem,7vw,7.15rem)] font-semibold leading-[0.94] tracking-[-0.06em] text-white sm:leading-[0.92] sm:tracking-[-0.065em]">
-                    <span className="hero-spectrum-text">{slide.lead}</span>
-                    <br />
-                    <span>{slide.accent}</span>
+                  <h1 className="hero-headline mt-7 max-w-full font-display text-[clamp(2.65rem,7vw,7.15rem)] font-semibold leading-[0.94] tracking-[-0.06em] text-white sm:leading-[0.92] sm:tracking-[-0.065em]">
+                    <span className="hero-headline-line hero-spectrum-text">{slide.lead}</span>
+                    <span className="hero-headline-line">{slide.accent}</span>
                   </h1>
 
                   <p className="mt-7 max-w-3xl text-base leading-7 text-white/60 sm:text-lg sm:leading-8 lg:text-xl">{slide.copy}</p>
@@ -94,10 +91,6 @@ export default function Hero() {
                 ))}
               </div>
             </div>
-          </div>
-
-          <div className="hidden flex-wrap gap-2 border-t border-white/10 py-7 sm:flex">
-            {CAPABILITIES.map((capability) => <span key={capability} className="rounded-full border border-white/10 bg-white/[0.025] px-4 py-2 text-xs text-white/55 backdrop-blur-sm">{capability}</span>)}
           </div>
         </div>
       </ScrollAway>

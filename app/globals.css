@@ -114,6 +114,20 @@ textarea {
   -webkit-background-clip: text;
 }
 
+/* The hero headline keeps each clause on a single line so it always reads as
+   exactly two lines. Sizing from the container rather than the viewport means
+   the type tracks the width actually available inside the responsive gutters.
+   Browsers without container query units fall back to the inherited size. */
+.hero-headline {
+  container-type: inline-size;
+}
+
+.hero-headline-line {
+  display: block;
+  white-space: nowrap;
+  font-size: min(7.15rem, 7cqw);
+}
+
 .hero-workflow-mask {
   -webkit-mask-image: linear-gradient(to right, transparent 0%, transparent 28%, #000 58%);
   mask-image: linear-gradient(to right, transparent 0%, transparent 28%, #000 58%);

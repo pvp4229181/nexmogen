@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { FiMenu, FiX, FiChevronDown } from "react-icons/fi";
 import { services } from "@/lib/services";
@@ -17,30 +17,17 @@ export default function Navbar() {
   const [servicesOpen, setServicesOpen] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [tucked, setTucked] = useState(false);
-  const lastY = useRef(0);
-  // An open menu pins the bar in place — tucking it away would take the panel with it.
-  const menuLock = open || servicesOpen;
   useEffect(() => {
-    if (menuLock) setTucked(false);
-    lastY.current = window.scrollY;
-    const onScroll = () => {
-      const y = window.scrollY;
-      const delta = y - lastY.current;
-      setScrolled(y > 24);
-      // Ignore sub-pixel jitter and overscroll bounce; only commit once past the height of the bar.
-      if (!menuLock && Math.abs(delta) > 6 && y > 0) setTucked(delta > 0 && y > 160);
-      lastY.current = y;
-    };
+    const onScroll = () => setScrolled(window.scrollY > 24);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, [menuLock]);
+  }, []);
   const isActive = (href: string) => href === "/" ? pathname === "/" : pathname.startsWith(href);
   const heroNav = pathname === "/" && !scrolled && !open;
   const navColor = (href: string) => isActive(href) ? "text-primary-light" : "text-white/80";
 
-  return <header onFocus={() => setTucked(false)} className={`fixed inset-x-0 top-0 z-50 w-full max-w-full border-b transition-all duration-300 ${tucked ? "-translate-y-full" : "translate-y-0"} ${open || scrolled ? "border-white/[0.08] bg-ink/85 shadow-lg shadow-black/30 backdrop-blur-xl" : "border-transparent bg-transparent backdrop-blur-none"}`}>
+  return <header className={`fixed inset-x-0 top-0 z-50 w-full max-w-full border-b transition-all duration-300 ${open || scrolled ? "border-white/[0.08] bg-ink/85 shadow-lg shadow-black/30 backdrop-blur-xl" : "border-transparent bg-transparent backdrop-blur-none"}`}>
     <nav className={`container-px flex w-full min-w-0 max-w-full items-center justify-between gap-4 transition-all duration-300 ${scrolled ? "h-16 lg:h-20" : "h-20 lg:h-24"}`}>
       <Link href="/" aria-label="Nexmogen home" className="min-w-0 shrink">
         <Image src="/nexmogen-logo.png" alt="Nexmogen" width={2089} height={753} preload className="h-auto w-[175px] sm:w-[195px]" />
