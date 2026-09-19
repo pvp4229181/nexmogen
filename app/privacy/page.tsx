@@ -3,7 +3,7 @@ import Reveal from "@/components/Reveal";
 import PageHero from "@/components/PageHero";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | Nexmogen",
+  title: "Privacy Policy",
   description: "How Nexmogen collects, uses, and protects your information.",
 };
 

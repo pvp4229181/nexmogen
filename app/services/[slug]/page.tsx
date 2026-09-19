@@ -1,212 +1,89 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import Reveal from "@/components/Reveal";
-import TiltCard from "@/components/TiltCard";
+import SpotlightCard from "@/components/SpotlightCard";
 import CtaSection from "@/components/CtaSection";
 import PageHero from "@/components/PageHero";
+import ServiceProcessRail from "@/components/ServiceProcessRail";
 import { services, getServiceBySlug } from "@/lib/services";
-import { FiCheck, FiArrowRight } from "react-icons/fi";
+
+const featureLayout = ["lg:col-span-7", "lg:col-span-5", "lg:col-span-4", "lg:col-span-8", "lg:col-span-5", "lg:col-span-7"];
 
 export function generateStaticParams() {
   return services.map((service) => ({ slug: service.slug }));
 }
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const service = getServiceBySlug(slug);
   if (!service) return {};
-  return {
-    title: `${service.title} | Nexmogen`,
-    description: service.description,
-  };
+  return { title: service.title, description: service.description };
 }
 
-export default async function ServiceDetailPage({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
+export default async function ServiceDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const service = getServiceBySlug(slug);
   if (!service) notFound();
-
   const Icon = service.icon;
 
-  return (
-    <>
-      <PageHero
-        eyebrow={service.title}
-        title={service.tagline}
-        description={service.overview}
-        ctaLabel={service.ctaLabel}
-        ctaHref="/contact"
-        icon={<Icon />}
-      />
+  return <>
+    <PageHero eyebrow={service.title} title={service.tagline} description={service.overview} ctaLabel={service.ctaLabel} ctaHref="/contact" icon={<Icon />} />
 
-      {service.stats && (
-        <section className="relative overflow-hidden bg-surface py-20">
-          <div className="section-grid pointer-events-none absolute inset-0 opacity-30" />
-          <div className="container-px relative mx-auto grid max-w-7xl gap-5 sm:grid-cols-2 lg:grid-flow-col lg:grid-cols-none lg:auto-cols-fr">
-            {service.stats.map((stat, i) => (
-              <Reveal key={stat.label} delay={i * 0.08} className="h-full">
-                <TiltCard className="h-full">
-                  <div className="card card-interactive h-full p-8 text-center">
-                    <p className="gradient-text font-display text-4xl font-bold">{stat.value}</p>
-                    <p className="mt-2 text-xs font-semibold uppercase tracking-[0.15em] text-white/45">{stat.label}</p>
-                  </div>
-                </TiltCard>
-              </Reveal>
-            ))}
-          </div>
-        </section>
-      )}
-
-      <section className={`section ${service.stats ? "bg-ink" : "bg-surface"}`}>
-        <div className="container-px mx-auto max-w-6xl">
-          <Reveal className="mx-auto max-w-2xl text-center">
-            <p className="eyebrow justify-center">
-              What&apos;s Included
-            </p>
-            <h2 className="section-title">
-              Everything You Need
-            </h2>
-          </Reveal>
-
-          <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {service.features.map((feature, i) => (
-              <Reveal key={feature.title} delay={i * 0.06} className="h-full">
-                <TiltCard className="h-full">
-                  <div className="card card-interactive h-full p-7 sm:p-8">
-                    <h3 className="font-display text-xl font-semibold text-white">
-                      {feature.title}
-                    </h3>
-                    <p className="mt-3 text-sm leading-7 text-white/55">{feature.description}</p>
-                  </div>
-                </TiltCard>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className={`section ${service.stats ? "bg-surface" : "bg-ink"}`}>
-        <div className="container-px mx-auto max-w-5xl">
-          <Reveal className="mx-auto max-w-2xl text-center">
-            <p className="eyebrow justify-center">
-              How We Work
-            </p>
-            <h2 className="section-title">
-              Our Process
-            </h2>
-          </Reveal>
-
-          <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {service.process.map((step, i) => (
-              <Reveal key={step.title} delay={i * 0.08} className="h-full">
-                <TiltCard className="h-full">
-                  <div className="card card-interactive h-full p-7">
-                    <p className="font-display text-4xl font-bold text-primary-light/40">
-                      {String(i + 1).padStart(2, "0")}
-                    </p>
-                    <h3 className="mt-6 font-display text-lg font-semibold text-white">
-                      {step.title}
-                    </h3>
-                    <p className="mt-3 text-sm leading-7 text-white/55">{step.description}</p>
-                  </div>
-                </TiltCard>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {service.techStack && (
-        <section
-          className={`relative flex min-h-[20rem] items-center overflow-hidden py-20 ${service.stats ? "bg-ink" : "bg-surface"}`}
-        >
-          <div className="section-grid pointer-events-none absolute inset-0 opacity-20" />
-          <div className="container-px relative mx-auto max-w-5xl text-center">
-            <Reveal className="flex w-full flex-col items-center justify-center rounded-3xl border border-white/10 bg-white/[0.035] px-5 py-10 shadow-2xl shadow-black/10 backdrop-blur-sm sm:px-10 sm:py-12">
-              <p className="eyebrow justify-center after:h-px after:w-8 after:bg-gradient-to-l after:from-primary-light after:to-accent">
-                Technology We Use
-              </p>
-              <div className="mx-auto mt-8 flex max-w-3xl flex-wrap items-center justify-center gap-3 sm:gap-4">
-                {service.techStack.map((tech) => (
-                  <span
-                    key={tech}
-                    className="rounded-full border border-white/10 bg-white/5 px-5 py-2.5 text-sm font-medium text-white/70 backdrop-blur-md transition-colors duration-300 hover:border-primary-light/40 hover:bg-white/10 hover:text-white sm:px-6"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </Reveal>
-          </div>
-        </section>
-      )}
-
-      {service.pricing && (
-        <section className={`section ${service.stats ? "bg-surface" : "bg-ink"}`}>
-          <div className="container-px mx-auto max-w-6xl">
-            <Reveal className="mx-auto max-w-2xl text-center">
-              <p className="eyebrow justify-center">
-                Pricing
-              </p>
-              <h2 className="section-title">
-                Plans for {service.title}
-              </h2>
-            </Reveal>
-
-            <div className="mt-14 grid gap-6 lg:grid-cols-3">
-              {service.pricing.map((plan, i) => (
-                <Reveal key={plan.name} delay={i * 0.1} className="h-full">
-                  <TiltCard className="h-full">
-                    <div
-                      className={`relative flex h-full flex-col rounded-2xl border p-8 ${
-                        plan.popular
-                          ? "border-primary-light/50 bg-gradient-to-b from-primary/20 to-white/[0.03] shadow-2xl shadow-primary/10"
-                          : "border-white/10 bg-white/[0.04]"
-                      }`}
-                    >
-                      {plan.popular && (
-                        <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-primary px-4 py-1 text-xs font-semibold text-white">
-                          Most Popular
-                        </span>
-                      )}
-                      <h3 className="font-display text-xl font-semibold text-white">{plan.name}</h3>
-                      <p className="mt-4">
-                        <span className="font-display text-4xl font-bold text-white">{plan.price}</span>
-                        {plan.period && <span className="text-sm text-white/50"> {plan.period}</span>}
-                      </p>
-                      <ul className="mt-6 flex-1 space-y-3">
-                        {plan.features.map((feature) => (
-                          <li key={feature} className="flex items-start gap-2 text-sm text-white/70">
-                            <FiCheck className="mt-0.5 shrink-0 text-accent" />
-                            {feature}
-                          </li>
-                        ))}
-                      </ul>
-                      <Link
-                        href="/contact"
-                        className={plan.popular ? "btn-primary mt-8 w-full" : "btn-ghost mt-8 w-full"}
-                      >
-                        Get Started
-                      </Link>
-                    </div>
-                  </TiltCard>
-                </Reveal>
-              ))}
+    {service.stats && <section className="relative overflow-hidden border-y border-white/10 bg-surface py-16 sm:py-20">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_80%_50%,rgba(229,9,20,.14),transparent_36%)]" />
+      <div className="container-px relative mx-auto max-w-7xl">
+        <div className="grid divide-y divide-white/10 border-y border-white/10 sm:grid-cols-2 sm:divide-x sm:divide-y-0 lg:grid-flow-col lg:grid-cols-none lg:auto-cols-fr">
+          {service.stats.map((stat, index) => <Reveal key={stat.label} delay={index * .08}>
+            <div className="relative min-h-40 overflow-hidden px-6 py-8 sm:px-8">
+              <span className="absolute right-5 top-3 font-display text-6xl font-bold text-white/[.025]">{String(index + 1).padStart(2, "0")}</span>
+              <p className="gradient-text font-display text-4xl font-bold sm:text-5xl">{stat.value}</p>
+              <p className="mt-3 text-xs font-semibold uppercase tracking-[.16em] text-white/55">{stat.label}</p>
             </div>
-          </div>
-        </section>
-      )}
+          </Reveal>)}
+        </div>
+      </div>
+    </section>}
 
-      <CtaSection />
-    </>
-  );
+    <section className="section bg-ink">
+      <div className="section-grid pointer-events-none absolute inset-0 opacity-30" />
+      <div className="container-px relative mx-auto max-w-7xl">
+        <Reveal className="grid gap-8 lg:grid-cols-[.85fr_1.15fr] lg:items-end">
+          <div><p className="eyebrow">What&apos;s included</p><h2 className="section-title">Everything You Need</h2></div>
+          <p className="section-copy max-w-2xl lg:ml-auto">A complete delivery scope designed around performance, usability, and the long-term growth of your product.</p>
+        </Reveal>
+
+        <div className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-12">
+          {service.features.map((feature, index) => {
+            const number = String(index + 1).padStart(2, "0");
+            const featured = index === 0 || index === 3;
+            return <Reveal key={feature.title} delay={index * .06} className={`h-full ${featureLayout[index] ?? "lg:col-span-6"}`}>
+              <SpotlightCard className="h-full">
+                <article className={`group relative flex h-full min-h-[270px] overflow-hidden rounded-[2rem] border border-white/10 bg-[linear-gradient(145deg,rgba(255,255,255,.05),rgba(255,255,255,.015))] p-7 transition-all duration-300 hover:border-primary/50 hover:bg-[linear-gradient(145deg,rgba(229,9,20,.13),rgba(255,255,255,.018))] sm:p-9 ${featured ? "lg:min-h-[320px]" : ""}`}>
+                  <span className="pointer-events-none absolute -right-7 -top-12 font-display text-[9rem] font-bold leading-none text-white/[.025] transition-colors group-hover:text-primary/[.08]">{number}</span>
+                  <div className="relative flex w-full flex-col"><span className="font-mono text-xs tracking-[.2em] text-white/35">{number} / {String(service.features.length).padStart(2, "0")}</span><div className="mt-auto pt-14"><div className="mb-5 h-px w-12 bg-primary transition-all group-hover:w-20" /><h3 className={`font-display font-semibold text-white ${featured ? "text-2xl sm:text-3xl" : "text-xl sm:text-2xl"}`}>{feature.title}</h3><p className="mt-4 max-w-2xl text-sm leading-7 text-white/60">{feature.description}</p></div></div>
+                </article>
+              </SpotlightCard>
+            </Reveal>;
+          })}
+        </div>
+      </div>
+    </section>
+
+    <section className="section bg-surface">
+      <div className="container-px mx-auto max-w-7xl">
+        <Reveal className="max-w-3xl"><p className="eyebrow">How we work</p><h2 className="section-title">Our Process</h2><p className="section-copy">A clear path from the first conversation to a dependable launch.</p></Reveal>
+        <ServiceProcessRail steps={service.process} />
+      </div>
+    </section>
+
+    {service.techStack && <section className="relative overflow-hidden border-y border-white/10 bg-ink py-20 sm:py-24">
+      <div className="section-grid pointer-events-none absolute inset-0 opacity-25" />
+      <div className="container-px relative mx-auto grid max-w-7xl gap-10 lg:grid-cols-[.7fr_1.3fr] lg:items-center">
+        <Reveal><p className="eyebrow">Technology we use</p><h2 className="mt-5 font-display text-3xl font-bold text-white sm:text-4xl">The right tools for the job.</h2></Reveal>
+        <Reveal delay={.1} className="flex flex-wrap gap-3 lg:justify-end">{service.techStack.map((tech, index) => <span key={tech} className="inline-flex min-h-12 items-center gap-3 rounded-full border border-white/10 bg-white/[.04] px-5 text-sm font-medium text-white/70 transition-colors hover:border-primary/50 hover:bg-primary/10 hover:text-white"><small className="font-mono text-[10px] text-primary-light">{String(index + 1).padStart(2, "0")}</small>{tech}</span>)}</Reveal>
+      </div>
+    </section>}
+
+    <CtaSection />
+  </>;
 }

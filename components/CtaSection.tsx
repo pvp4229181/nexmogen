@@ -1,7 +1,6 @@
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
 import { FiArrowRight } from "react-icons/fi";
-import { HERO_VIDEO_URL } from "@/lib/constants";
 
 export default function CtaSection({
   title = "Let's Build Something Great Together",
@@ -15,34 +14,28 @@ export default function CtaSection({
   label?: string;
 }) {
   return (
-    <section className="section bg-ink">
+    <section className="section bg-ink !py-12 sm:!py-16 lg:!py-20">
       <div className="container-px mx-auto max-w-7xl">
         <Reveal>
-          <div className="relative min-w-0 overflow-hidden rounded-3xl border border-white/10 bg-black px-5 py-14 text-center shadow-2xl shadow-primary/10 sm:rounded-[2rem] sm:px-12 sm:py-16 md:py-24">
-            <video
-              className="absolute inset-0 h-full w-full object-cover grayscale contrast-125"
-              src={HERO_VIDEO_URL}
-              autoPlay
-              loop
-              muted
-              playsInline
-              preload="metadata"
-              aria-hidden="true"
-            />
-            <div className="absolute inset-0 bg-red-600/50 mix-blend-color" />
-            <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(5,5,14,0.92),rgba(5,5,14,0.7),rgba(5,5,14,0.92))]" />
-            <div className="section-grid pointer-events-none absolute inset-0 opacity-30" />
-            <div className="relative z-10">
-              <p className="eyebrow justify-center">Start a conversation</p>
-              <h2 className="mx-auto mt-5 max-w-3xl font-display text-3xl font-bold leading-tight text-white sm:text-5xl">
-              {title}
-              </h2>
-              <p className="mx-auto mt-5 max-w-2xl leading-7 text-white/65">
-                {description}
-              </p>
-              <Link href={href} className="btn-primary group mt-9 w-full sm:w-auto">
-                {label}
-                <FiArrowRight className="ml-2 transition-transform group-hover:translate-x-1" />
+          <div className="relative min-w-0 overflow-hidden rounded-3xl border border-white/10 bg-[linear-gradient(120deg,#120506_0%,#090607_52%,#050506_100%)] px-6 py-9 shadow-2xl shadow-primary/10 sm:rounded-[2rem] sm:px-10 sm:py-10 lg:px-12 lg:py-12">
+            <div className="pointer-events-none absolute -right-20 -top-32 h-80 w-80 rounded-full bg-primary/20 blur-3xl" aria-hidden="true" />
+            <div className="pointer-events-none absolute bottom-0 left-1/3 h-px w-2/3 bg-gradient-to-r from-transparent via-primary/70 to-transparent" aria-hidden="true" />
+            <div className="section-grid pointer-events-none absolute inset-0 opacity-20" aria-hidden="true" />
+
+            <div className="relative z-10 grid items-center gap-8 lg:grid-cols-[minmax(0,1fr)_auto] lg:gap-12">
+              <div>
+                <p className="eyebrow">Start a conversation</p>
+                <h2 className="mt-4 max-w-3xl text-balance font-display text-3xl font-bold leading-tight text-white sm:text-4xl lg:text-5xl">
+                  {title}
+                </h2>
+                <p className="mt-4 max-w-2xl text-base leading-7 text-white/65">
+                  {description}
+                </p>
+              </div>
+
+              <Link href={href} className="btn-primary group w-full whitespace-normal lg:w-auto lg:max-w-[280px]">
+                <span>{label}</span>
+                <FiArrowRight aria-hidden="true" className="ml-2 shrink-0 transition-transform group-hover:translate-x-1" />
               </Link>
             </div>
           </div>

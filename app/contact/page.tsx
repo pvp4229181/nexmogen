@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import Reveal from "@/components/Reveal";
-import TiltCard from "@/components/TiltCard";
+import SpotlightCard from "@/components/SpotlightCard";
 import ContactForm from "@/components/ContactForm";
 import PageHero from "@/components/PageHero";
 import { FiMapPin, FiMail, FiPhone } from "react-icons/fi";
 
 export const metadata: Metadata = {
-  title: "Contact | Nexmogen",
+  title: "Contact",
   description:
     "Get in touch with Nexmogen for premium business services — innovative design, custom development, and complete project solutions.",
 };
@@ -29,7 +29,7 @@ export default function ContactPage() {
           </Reveal>
 
           <Reveal className="lg:col-span-2" delay={0.2}>
-            <TiltCard className="h-full">
+            <SpotlightCard className="h-full">
               <div className="card h-full space-y-9 p-7 sm:p-9">
                 <div>
                   <p className="eyebrow">Direct contact</p>
@@ -58,7 +58,7 @@ export default function ContactPage() {
                   </a>
                 </div>
               </div>
-            </TiltCard>
+            </SpotlightCard>
           </Reveal>
         </div>
       </div>

@@ -2,13 +2,14 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
-import TiltCard from "@/components/TiltCard";
+import ScrollZoom from "@/components/scroll/ScrollZoom";
+import SpotlightCard from "@/components/SpotlightCard";
 import PageHero from "@/components/PageHero";
 import { getBlogPosts } from "@/lib/data";
 import { FiArrowRight } from "react-icons/fi";
 
 export const metadata: Metadata = {
-  title: "Blog | Nexmogen",
+  title: "Blog",
   description: "Insights on web development, AI, SaaS, and digital growth from the Nexmogen team.",
 };
 
@@ -37,12 +38,16 @@ export default async function BlogPage() {
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {posts.map((post, i) => (
               <Reveal key={post.slug} delay={i * 0.08} className="h-full">
-                <TiltCard className="h-full">
+                <SpotlightCard className="h-full">
                   <Link
                     href={`/blog/${post.slug}`}
                     className="card card-interactive group flex h-full flex-col overflow-hidden"
                   >
-                    <div className="relative aspect-video w-full overflow-hidden bg-surface">
+                    <ScrollZoom
+                      className="relative aspect-video w-full bg-surface"
+                      from={1.16}
+                      drift={14}
+                    >
                       {post.imageUrl ? (
                         <Image
                           src={post.imageUrl}
@@ -52,7 +57,7 @@ export default async function BlogPage() {
                           className="object-cover transition-transform duration-500 group-hover:scale-105"
                         />
                       ) : null}
-                    </div>
+                    </ScrollZoom>
 
                     <div className="flex flex-1 flex-col p-7 sm:p-8">
                       <p className="text-xs font-medium uppercase tracking-wide text-primary-light">
@@ -77,7 +82,7 @@ export default async function BlogPage() {
                       </div>
                     </div>
                   </Link>
-                </TiltCard>
+                </SpotlightCard>
               </Reveal>
             ))}
           </div>

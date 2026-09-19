@@ -4,7 +4,7 @@
 
 html {
   scroll-behavior: smooth;
-  background: #070711;
+  background: #050506;
   width: 100%;
   max-width: 100%;
   overflow-x: hidden;
@@ -19,9 +19,9 @@ body {
   overflow-x: clip;
   overflow-wrap: break-word;
   background:
-    radial-gradient(circle at 10% 0%, rgba(239, 68, 68, 0.14), transparent 28rem),
-    radial-gradient(circle at 90% 35%, rgba(185, 28, 28, 0.1), transparent 30rem),
-    #070711;
+    radial-gradient(circle at 8% 0%, rgba(229, 9, 20, 0.16), transparent 30rem),
+    radial-gradient(circle at 94% 34%, rgba(255, 23, 68, 0.09), transparent 32rem),
+    #050506;
   color: #f5f5fa;
 }
 
@@ -47,7 +47,7 @@ svg {
 }
 
 ::selection {
-  background: rgba(239, 68, 68, 0.4);
+  background: rgba(229, 9, 20, 0.5);
   color: #fff;
 }
 
@@ -55,15 +55,28 @@ a,
 button,
 input,
 textarea {
-  outline-color: #fb7185;
+  outline-color: #ff4d57;
 }
 
 .container-px {
-  @apply w-full min-w-0 max-w-full px-4 sm:px-8 lg:px-12;
+  @apply w-full min-w-0 max-w-full px-5 sm:px-10 lg:px-16 xl:px-20;
 }
 
 .section {
-  @apply relative w-full max-w-full overflow-hidden py-16 sm:py-24 lg:py-32;
+  @apply relative w-full max-w-full overflow-hidden py-16 sm:py-20 lg:py-24;
+}
+
+/*
+ * Same geometry as .section, but it never becomes a scroll container:
+ * `overflow: hidden` would make it the nearest scrollport for any
+ * position: sticky descendant, and since it does not itself scroll, the
+ * sticky would never engage. Clipping only the x axis still contains the
+ * decorative bleed without that side effect.
+ */
+.section-flow {
+  @apply relative w-full max-w-full py-16 sm:py-20 lg:py-24;
+  overflow-x: clip;
+  overflow-y: visible;
 }
 
 .section-grid {
@@ -72,6 +85,192 @@ textarea {
     linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
   background-size: 56px 56px;
   mask-image: linear-gradient(to bottom, transparent, black 18%, black 82%, transparent);
+}
+
+/* ---------- Hero backdrop layers ---------- */
+
+.hero-sdlc-glow {
+  background:
+    radial-gradient(ellipse 42% 55% at 58% 32%, rgba(229, 9, 20, 0.3), transparent 72%),
+    radial-gradient(ellipse 34% 55% at 86% 18%, rgba(255, 23, 68, 0.18), transparent 72%),
+    radial-gradient(ellipse 34% 30% at 24% 80%, rgba(159, 7, 16, 0.28), transparent 76%),
+    linear-gradient(110deg, #080304 0%, #0d0507 58%, #050203 100%);
+}
+
+.hero-sdlc-grid {
+  opacity: 0.18;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 80px 80px;
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 22%, #000 82%, transparent);
+  mask-image: linear-gradient(to bottom, transparent, #000 22%, #000 82%, transparent);
+}
+
+.hero-spectrum-text {
+  color: transparent;
+  background: linear-gradient(100deg, #e50914 0%, #ff4d57 58%, #ffe5e7 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+.hero-workflow-mask {
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, transparent 28%, #000 58%);
+  mask-image: linear-gradient(to right, transparent 0%, transparent 28%, #000 58%);
+}
+
+.hero-ai-field {
+  --scene-glow: rgba(0, 153, 255, 0.13);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.2) 12%, #000 42%);
+  mask-image: linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.2) 12%, #000 42%);
+}
+
+.hero-ai-field[data-scene="1"] { --scene-glow: rgba(139, 92, 246, 0.15); }
+.hero-ai-field[data-scene="2"] { --scene-glow: rgba(34, 211, 238, 0.14); }
+.hero-ai-field[data-scene="3"] { --scene-glow: rgba(244, 63, 94, 0.14); }
+.hero-ai-field[data-scene="4"] { --scene-glow: rgba(16, 185, 129, 0.13); }
+
+.hero-ai-field::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 52% 60% at 72% 44%, var(--scene-glow), transparent 72%);
+  transition: background 550ms ease;
+}
+
+@media (max-width: 767px) {
+  .hero-ai-field {
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), transparent 76%);
+    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), transparent 76%);
+  }
+}
+
+.hero-btn-primary {
+  @apply inline-flex min-h-14 max-w-full cursor-pointer items-center justify-center rounded-full bg-gradient-to-r from-primary to-primary-light px-7 py-3 text-center text-sm font-semibold text-white shadow-lg shadow-primary/25 transition-shadow duration-200 hover:shadow-xl hover:shadow-primary/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-light;
+}
+
+.hero-btn-secondary {
+  @apply inline-flex min-h-14 max-w-full cursor-pointer items-center justify-center rounded-full border border-white/15 bg-white/[0.035] px-7 py-3 text-center text-sm font-medium text-white/85 backdrop-blur-md transition-colors duration-200 hover:border-primary-light/60 hover:bg-primary/10 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-light;
+}
+
+/* Dot field the hero node graph is drawn over, vignetted so it never reaches
+   the section edges. */
+.hero-dot-grid {
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.075) 1px, transparent 1px);
+  background-size: 26px 26px;
+  opacity: 0.55;
+  -webkit-mask-image: radial-gradient(ellipse 90% 70% at 50% 45%, #000 55%, transparent 90%);
+  mask-image: radial-gradient(ellipse 90% 70% at 50% 45%, #000 55%, transparent 90%);
+}
+
+/* Frosted slab under the centred hero copy. It blurs and darkens whatever the
+   node graph is doing behind the headline, then falls away at both edges so
+   the outer thirds of the animation stay sharp. Heaviest down the middle
+   because that is where the type sits. */
+.hero-plate-center {
+  -webkit-backdrop-filter: blur(24px) saturate(170%);
+  backdrop-filter: blur(24px) saturate(170%);
+  background: radial-gradient(
+    ellipse 70% 62% at 50% 50%,
+    rgba(5, 5, 6, 0.82) 0%,
+    rgba(12, 7, 10, 0.62) 42%,
+    rgba(16, 9, 12, 0.28) 68%,
+    transparent 100%
+  );
+  -webkit-mask-image: radial-gradient(ellipse 82% 78% at 50% 50%, #000 40%, transparent 92%);
+  mask-image: radial-gradient(ellipse 82% 78% at 50% 50%, #000 40%, transparent 92%);
+}
+
+/* Two offset brand blooms that cross behind the headline — one warm red from
+   the top-left, one pink from the upper-right — plus a low crimson wash to
+   keep the base of the section from going flat black. */
+.hero-mesh {
+  background-image:
+    radial-gradient(ellipse 52% 44% at 22% 8%, rgba(229, 9, 20, 0.34), transparent 62%),
+    radial-gradient(ellipse 46% 40% at 78% 2%, rgba(255, 23, 68, 0.26), transparent 60%),
+    radial-gradient(ellipse 80% 40% at 50% 104%, rgba(159, 7, 16, 0.22), transparent 70%);
+  filter: blur(58px);
+  opacity: 0.62;
+}
+
+/* Film grain over the blooms. Stacking two offset dot fields at different
+   sizes gives an irregular texture that breaks up the gradient banding a
+   large blurred radial leaves behind. */
+.hero-grain {
+  background-image:
+    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.055) 0.5px, transparent 0.5px),
+    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.035) 0.5px, transparent 0.5px);
+  background-size: 3px 3px, 7px 7px;
+  background-position: 0 0, 2px 3px;
+  opacity: 0.55;
+  mix-blend-mode: overlay;
+}
+
+/* ---------- Hero workflow canvas ---------- */
+
+/* Every animation below runs on the same 9s cycle as the packets in
+   HeroWorkflow, which stagger themselves with animation-delay, so one pass of
+   the canvas reads as a single run of the workflow. */
+
+/* A node's ring flares as the packet lands on it, then fades. The lit window
+   is deliberately short — about a second out of nine — so the canvas stays a
+   backdrop rather than a light show. */
+.wf-ring {
+  opacity: 0;
+  filter: drop-shadow(0 0 10px rgba(255, 77, 87, 0.65));
+  animation: wf-ring 9s linear infinite;
+}
+
+@keyframes wf-ring {
+  0% {
+    opacity: 0;
+  }
+  2% {
+    opacity: 0.9;
+  }
+  11% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Capability links crawl continuously — they carry context to the agent the
+   whole time it runs, so unlike the edges they have no idle phase. */
+.wf-crawl {
+  stroke-dasharray: 5 9;
+  animation: wf-crawl 1.1s linear infinite;
+}
+
+@keyframes wf-crawl {
+  to {
+    stroke-dashoffset: -28;
+  }
+}
+
+/* Whole-canvas float, long and shallow enough to read as depth rather than
+   movement once the scroll parallax is also acting on it. */
+.wf-drift {
+  animation: wf-drift 14s ease-in-out infinite;
+}
+
+@keyframes wf-drift {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wf-ring,
+  .wf-crawl,
+  .wf-drift {
+    animation: none;
+  }
 }
 
 .eyebrow {
@@ -103,6 +302,10 @@ textarea {
   @apply inline-flex min-h-12 max-w-full items-center justify-center whitespace-normal rounded-full border border-white/20 bg-white/[0.03] px-5 py-3 text-center text-sm font-semibold uppercase tracking-[0.08em] text-white backdrop-blur-md transition-all duration-300 hover:-translate-y-0.5 hover:border-primary-light/60 hover:bg-white/[0.08] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-light sm:px-7 sm:tracking-[0.12em];
 }
 
+.arrow-control {
+  @apply inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/20 bg-white/[0.03] text-white/80 backdrop-blur-md transition-all duration-300 hover:border-primary-light/60 hover:bg-white/[0.08] hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-light;
+}
+
 .card {
   @apply min-w-0 max-w-full rounded-3xl border border-white/10 bg-white/[0.045] shadow-2xl shadow-black/10 backdrop-blur-xl;
 }
@@ -113,6 +316,173 @@ textarea {
 
 .field {
   @apply w-full min-w-0 max-w-full rounded-2xl border border-white/10 bg-black/20 px-4 py-3.5 text-white placeholder-white/30 transition-colors focus:border-primary-light focus:bg-black/30 focus:outline-none;
+}
+
+/* ---------- Interactive card shell (spotlight + tilt) ---------- */
+
+.spotlight {
+  --spot-x: 50%;
+  --spot-y: 50%;
+  --spot-opacity: 0;
+  --tilt-x: 0deg;
+  --tilt-y: 0deg;
+  @apply relative min-w-0 max-w-full;
+  perspective: 1000px;
+}
+
+.spotlight > * {
+  position: relative;
+  isolation: isolate;
+  transition: transform 300ms cubic-bezier(0.22, 1, 0.36, 1);
+  transform-style: preserve-3d;
+}
+
+.spotlight-tilt > * {
+  transform: rotateX(var(--tilt-x)) rotateY(var(--tilt-y));
+}
+
+.spotlight > *::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  opacity: var(--spot-opacity);
+  transition: opacity 320ms ease;
+  pointer-events: none;
+  background: radial-gradient(
+    22rem circle at var(--spot-x) var(--spot-y),
+    rgba(229, 9, 20, 0.18),
+    transparent 62%
+  );
+}
+
+/* ---------- Deep-linked case study card ---------- */
+
+/*
+ * A pinned card reports its stuck position, not the one it holds in the flow.
+ * CaseStudyFocus flips this on for a single measurement so a deep link can read
+ * the real position, then flips it straight back off.
+ */
+[data-anchor-measuring] [data-sticky-card] {
+  position: static !important;
+}
+
+/* The card a deep link landed on stays marked while its hash is the active one. */
+[data-case-study][data-focused] {
+  border-color: rgba(229, 9, 20, 0.55);
+  box-shadow:
+    0 0 0 1px rgba(229, 9, 20, 0.35),
+    0 30px 90px -30px rgba(229, 9, 20, 0.5),
+    0 25px 50px -12px rgba(0, 0, 0, 0.35);
+}
+
+[data-case-study][data-focused]::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border-radius: inherit;
+  pointer-events: none;
+  /* Inset: the card clips its overflow, so an outer ring would be cut away. */
+  box-shadow: inset 0 0 0 2px rgba(255, 77, 87, 0.75);
+  animation: case-study-lock 1.5s ease-out 2 forwards;
+  opacity: 0;
+}
+
+@keyframes case-study-lock {
+  0% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* ---------- Ambient motion ---------- */
+
+.glow-ring {
+  position: relative;
+}
+
+.glow-ring::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(120deg, rgba(229, 9, 20, 0.8), transparent 40%, rgba(255, 77, 87, 0.62));
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 300ms ease;
+  pointer-events: none;
+}
+
+.glow-ring:hover::after {
+  opacity: 1;
+}
+
+.noise-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ---------- Scroll-linked 3D depth ---------- */
+
+.scroll-depth-section {
+  isolation: isolate;
+  perspective: 1400px;
+}
+
+.scroll-depth-section::before {
+  content: "";
+  position: absolute;
+  inset: -30% -12%;
+  z-index: 0;
+  pointer-events: none;
+  opacity: var(--depth-opacity, 0.38);
+  background-image:
+    linear-gradient(rgba(229, 9, 20, 0.16) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 77, 87, 0.12) 1px, transparent 1px),
+    radial-gradient(circle at 72% 48%, rgba(229, 9, 20, 0.16), transparent 36%);
+  background-size: 72px 72px, 72px 72px, 100% 100%;
+  mask-image: linear-gradient(to bottom, transparent 8%, black 34%, black 66%, transparent 92%);
+  transform-origin: 50% 50%;
+  transform: translate3d(0, var(--depth-y, 0), -90px)
+    rotateX(64deg)
+    rotateZ(var(--depth-rz, 0deg))
+    scale(1.18);
+  transform-style: preserve-3d;
+  will-change: transform, opacity;
+}
+
+.scroll-depth-section > .container-px {
+  position: relative;
+  z-index: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-depth-section::before {
+    opacity: 0.22;
+    transform: rotateX(64deg) translateZ(-90px) scale(1.18);
+    will-change: auto;
+  }
+
+  .spotlight > * {
+    transform: none !important;
+  }
+
+  .spotlight > *::before {
+    opacity: 0 !important;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

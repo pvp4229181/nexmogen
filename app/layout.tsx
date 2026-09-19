@@ -3,6 +3,9 @@ import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import ScrollProgress from "@/components/ScrollProgress";
+import CursorGlow from "@/components/CursorGlow";
+import ScrollDepth from "@/components/ScrollDepth";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const spaceGrotesk = Space_Grotesk({
@@ -11,9 +14,12 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "Nexmogen | Digital Innovation Partner",
+  title: {
+    default: "Nexmogen : Web Development & Mobile App Experts",
+    template: "%s - Nexmogen",
+  },
   description:
-    "Nexmogen builds stunning websites, AI agents, SaaS platforms, CRM software, mobile apps, and digital marketing solutions that drive business growth.",
+    "Nexmogen is a top web agency specializing in web development, mobile app development, and WordPress solutions.",
 };
 
 export default function RootLayout({
@@ -24,6 +30,10 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${spaceGrotesk.variable}`}>
       <body className="font-body antialiased">
+        <ScrollProgress />
+        <ScrollDepth />
+        <CursorGlow />
+        <div className="noise-overlay" aria-hidden="true" />
         <Navbar />
         <main>{children}</main>
         <Footer />

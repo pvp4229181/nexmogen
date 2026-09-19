@@ -11,10 +11,10 @@ import CtaSection from "@/components/CtaSection";
 import PageHero from "@/components/PageHero";
 import ProcessSection from "@/components/ProcessSection";
 import Reveal from "@/components/Reveal";
-import TiltCard from "@/components/TiltCard";
+import SpotlightCard from "@/components/SpotlightCard";
 
 export const metadata: Metadata = {
-  title: "About | Nexmogen",
+  title: "About",
   description:
     "Nexmogen is a team of passionate creators and tech enthusiasts dedicated to delivering innovative digital solutions that drive business success.",
 };
@@ -67,6 +67,15 @@ const reasons = [
   },
 ];
 
+const reasonLayout = [
+  "lg:col-span-7",
+  "lg:col-span-5",
+  "lg:col-span-4",
+  "lg:col-span-8",
+  "lg:col-span-5",
+  "lg:col-span-7",
+];
+
 const stats = [
   { value: "57", label: "Satisfied Clients" },
   { value: "130", label: "Projects Completed" },
@@ -84,7 +93,7 @@ export default function AboutPage() {
       />
 
       <section className="relative overflow-hidden bg-ink py-20 md:py-24">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_0%,rgba(239,68,68,0.18),transparent_38%),radial-gradient(circle_at_85%_100%,rgba(185,28,28,0.1),transparent_34%)]" />
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_0%,rgba(229,9,20,0.2),transparent_38%),radial-gradient(circle_at_85%_100%,rgba(255,23,68,0.1),transparent_34%)]" />
         <div className="container-px relative mx-auto grid max-w-6xl gap-7 md:grid-cols-3">
           <Reveal className="h-full">
             <article className="h-full min-h-[280px] border border-white/10 bg-surface px-6 pb-9 pt-0 sm:px-9 sm:pb-10">
@@ -159,24 +168,39 @@ export default function AboutPage() {
             </p>
           </Reveal>
 
-          <div className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-12">
             {reasons.map((reason, index) => {
               const Icon = reason.icon;
+              const featured = index === 0 || index === 3;
               return (
-                <Reveal key={reason.title} delay={index * 0.06} className="h-full">
-                  <TiltCard className="h-full">
-                    <article className="card group h-full p-7 transition-colors hover:border-primary/40 hover:bg-white/[0.07]">
-                      <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-primary/20 bg-primary/10 text-xl text-primary-light transition-colors group-hover:bg-primary group-hover:text-white">
-                        <Icon />
+                <Reveal key={reason.title} delay={index * 0.06} className={`h-full ${reasonLayout[index]}`}>
+                  <SpotlightCard className="h-full">
+                    <article className={`group relative flex h-full min-h-[300px] overflow-hidden rounded-[2rem] border border-white/10 bg-[linear-gradient(145deg,rgba(255,255,255,.055),rgba(255,255,255,.018))] p-7 transition-all duration-300 hover:border-primary/50 hover:bg-[linear-gradient(145deg,rgba(229,9,20,.13),rgba(255,255,255,.02))] sm:p-9 ${featured ? "lg:min-h-[350px]" : ""}`}>
+                      <div className="pointer-events-none absolute -right-7 -top-14 font-display text-[10rem] font-bold leading-none tracking-[-.08em] text-white/[.025] transition-colors duration-300 group-hover:text-primary/[.08]">
+                        {String(index + 1).padStart(2, "0")}
                       </div>
-                      <h3 className="mt-6 font-display text-xl font-semibold text-white">
-                        {reason.title}
-                      </h3>
-                      <p className="mt-3 text-sm leading-7 text-white/60">
-                        {reason.description}
-                      </p>
+                      <div className="pointer-events-none absolute inset-x-8 bottom-0 h-px bg-gradient-to-r from-transparent via-primary/60 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+
+                      <div className="relative flex w-full flex-col">
+                        <div className="flex items-start justify-between gap-6">
+                          <span className="font-mono text-xs font-semibold tracking-[.2em] text-white/35">{String(index + 1).padStart(2, "0")} / {String(reasons.length).padStart(2, "0")}</span>
+                          <div className={`flex items-center justify-center rounded-full border border-primary/30 bg-primary/10 text-primary-light shadow-[0_0_40px_rgba(229,9,20,.12)] transition-all duration-300 group-hover:border-primary group-hover:bg-primary group-hover:text-white ${featured ? "h-16 w-16 text-2xl" : "h-14 w-14 text-xl"}`}>
+                            <Icon aria-hidden="true" />
+                          </div>
+                        </div>
+
+                        <div className="mt-auto pt-12">
+                          <div className="mb-5 h-px w-12 bg-primary transition-all duration-300 group-hover:w-20" />
+                          <h3 className={`max-w-xl font-display font-semibold leading-tight text-white ${featured ? "text-2xl sm:text-3xl" : "text-xl sm:text-2xl"}`}>
+                            {reason.title}
+                          </h3>
+                          <p className={`mt-4 max-w-2xl leading-7 text-white/60 ${featured ? "text-base" : "text-sm"}`}>
+                            {reason.description}
+                          </p>
+                        </div>
+                      </div>
                     </article>
-                  </TiltCard>
+                  </SpotlightCard>
                 </Reveal>
               );
             })}
@@ -185,7 +209,7 @@ export default function AboutPage() {
       </section>
 
       <section className="relative overflow-hidden border-y border-white/10 bg-surface py-20 md:py-24">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_75%_50%,rgba(239,68,68,0.12),transparent_42%)]" />
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_75%_50%,rgba(229,9,20,0.13),transparent_42%)]" />
         <div className="container-px relative mx-auto max-w-6xl">
           <div className="grid gap-x-10 gap-y-12 sm:grid-cols-2 lg:grid-cols-[1.45fr_repeat(4,minmax(0,1fr))] lg:items-center">
             <Reveal className="sm:col-span-2 lg:col-span-1">

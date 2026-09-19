@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { FiFacebook, FiInstagram, FiLinkedin, FiMapPin, FiMail, FiPhone } from "react-icons/fi";
 
 export default function Footer() {
@@ -7,9 +8,9 @@ export default function Footer() {
       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary-light/60 to-transparent" />
       <div className="container-px mx-auto grid max-w-7xl gap-12 py-16 sm:py-20 md:grid-cols-2 lg:grid-cols-[1.3fr_.7fr_1fr_1fr]">
         <div>
-          <p className="font-display text-3xl font-bold tracking-[-0.04em] text-white">
-            Nexmo<span className="text-primary-light">gen</span><span className="text-accent">.</span>
-          </p>
+          <Link href="/" aria-label="Nexmogen home" className="inline-block">
+            <Image src="/nexmogen-logo.png" alt="Nexmogen" width={2089} height={753} className="h-auto w-[210px]" />
+          </Link>
           <p className="mt-5 max-w-sm text-sm leading-7 text-white/50">
             Empowering innovation through tailored software solutions. Partner
             with us for your digital success.
@@ -51,6 +52,7 @@ export default function Footer() {
             <li><Link href="/" className="hover:text-white">Home</Link></li>
             <li><Link href="/about" className="hover:text-white">About</Link></li>
             <li><Link href="/services" className="hover:text-white">Services</Link></li>
+            <li><Link href="/case-studies" className="hover:text-white">Case Studies</Link></li>
             <li><Link href="/contact" className="hover:text-white">Contact</Link></li>
             <li><Link href="/privacy" className="hover:text-white">Privacy Policy</Link></li>
           </ul>
@@ -92,7 +94,7 @@ export default function Footer() {
       </div>
 
       <div className="border-t border-white/10 py-6">
-        <div className="container-px mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 text-xs text-white/35 sm:flex-row">
+        <div className="container-px mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 text-xs text-white/60 sm:flex-row">
           <span>&copy; {new Date().getFullYear()} Nexmogen. All rights reserved.</span>
           <span>Designed for clarity. Built for growth.</span>
         </div>
