@@ -26,7 +26,7 @@ const projects = [
     name: "Trueway Network",
     category: "Production Support Services",
     order: 3,
-    imageUrl: "https://nexmogen.com/wp-content/uploads/2026/01/Frame-1-1.png",
+    imageUrl: "/projects/trueway-network.jpg",
     websiteUrl: "https://truewaynetwork.com/",
   },
   {
@@ -148,7 +148,7 @@ const testimonials = [
     quote:
       "Working with this team has been a game-changer. Their creativity and attention to detail are exceptional. They delivered designs that exceeded our expectations, blending functionality with stunning aesthetics. Highly recommend for anyone looking for top-tier design services!",
     order: 1,
-    imageUrl: "https://nexmogen.com/wp-content/uploads/2024/12/harsh-768x512.jpg",
+    imageUrl: "/testimonials/harsh-bhardwaj.jpg",
     rating: 4.5,
   },
   {

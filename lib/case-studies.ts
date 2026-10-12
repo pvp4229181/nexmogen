@@ -74,7 +74,7 @@ export const caseStudies: CaseStudy[] = [
     name: "Trueway Network",
     category: "Production Support Services",
     sector: "Film production services",
-    imageUrl: "https://nexmogen.com/wp-content/uploads/2026/01/Frame-1-1.png",
+    imageUrl: "/projects/trueway-network.jpg",
     websiteUrl: "https://truewaynetwork.com/",
     summary:
       "Line production, location scouting, filming permissions and production fixing for crews shooting across North India.",

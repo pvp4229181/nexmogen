@@ -1,6 +1,4 @@
-import Image from "next/image";
 import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
-import { FiUser } from "react-icons/fi";
 import { ITestimonial } from "@/models/Testimonial";
 
 function Stars({ rating = 5 }: { rating?: number }) {
@@ -22,22 +20,15 @@ function Stars({ rating = 5 }: { rating?: number }) {
 }
 
 function TestimonialCard({ t }: { t: ITestimonial }) {
+  const words = t.name.trim().split(/\s+/);
+  const initials = `${words[0]?.[0] ?? ""}${words.length > 1 ? words[words.length - 1][0] : ""}`.toUpperCase();
+
   return (
     <div className="w-[calc(100vw-2rem)] max-w-[310px] shrink-0 sm:w-[400px] sm:max-w-none">
       <div className="card relative h-full min-h-[340px] overflow-hidden p-6 sm:min-h-[360px] sm:p-9">
         <span className="pointer-events-none absolute right-7 top-2 font-serif text-8xl leading-none text-primary-light/10">“</span>
-        <div className="flex h-14 w-14 items-center justify-center overflow-hidden rounded-full border border-primary-light/20 bg-primary/15 text-primary-light">
-          {t.imageUrl ? (
-            <Image
-              src={t.imageUrl}
-              alt={t.name}
-              width={56}
-              height={56}
-              className="h-full w-full object-cover"
-            />
-          ) : (
-            <FiUser size={22} />
-          )}
+        <div aria-hidden="true" className="flex h-14 w-14 items-center justify-center rounded-full border border-primary-light/20 bg-primary/15 text-lg font-semibold text-primary-light">
+          {initials}
         </div>
         <p className="mt-5 text-sm font-bold uppercase tracking-wide text-white">
           {t.name}
