@@ -9,7 +9,7 @@ import { FiMenu, FiX, FiChevronDown } from "react-icons/fi";
 import { services } from "@/lib/services";
 
 const links = [{ href: "/", label: "Home" }, { href: "/about", label: "About" }];
-const trailingLinks = [{ href: "/case-studies", label: "Case Studies" }, { href: "/contact", label: "Contact" }, { href: "/blog", label: "Blog" }];
+const trailingLinks = [{ href: "/products", label: "Products" }, { href: "/case-studies", label: "Case Studies" }, { href: "/contact", label: "Contact" }, { href: "/blog", label: "Blog" }];
 
 export default function Navbar() {
   const pathname = usePathname();

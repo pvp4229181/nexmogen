@@ -93,29 +93,6 @@ export const caseStudies: CaseStudy[] = [
     stack: ["WordPress Development", "SEO Setup", "Website Maintenance"],
   },
   {
-    slug: "shrimani-bhadravir",
-    name: "Shrimani Bhadravir",
-    category: "Industrial E-commerce",
-    sector: "Industrial supply",
-    imageUrl:
-      "https://nexmogen.com/wp-content/uploads/2026/01/Website-services-nexmogen-Website.png",
-    summary:
-      "An industrial products storefront built to move a catalogue-driven business onto the web.",
-    challenge:
-      "Industrial buyers arrive knowing the specification they need. Browsing matters less than finding an exact product and getting a quote without friction.",
-    approach: [
-      "Organised the catalogue around product families so a specification-led buyer can narrow down in two steps.",
-      "Kept enquiry and quote requests attached to each product rather than on a separate contact page.",
-      "Prioritised fast, low-weight pages for buyers on patchy mobile connections.",
-    ],
-    delivered: [
-      "Category-driven product catalogue",
-      "Per-product enquiry and quote requests",
-      "Mobile-first layouts for on-site buyers",
-    ],
-    stack: ["E-commerce Development", "Website Development"],
-  },
-  {
     slug: "mhw-consultancy",
     name: "MHW Consultancy",
     category: "Consultancy / NGO",

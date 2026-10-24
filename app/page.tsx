@@ -4,6 +4,7 @@ import ServicesSection from "@/components/ServicesSection";
 import CapabilityTabs from "@/components/CapabilityTabs";
 import StatsBand from "@/components/StatsBand";
 import PortfolioSection from "@/components/PortfolioSection";
+import ProductSpotlight from "@/components/ProductSpotlight";
 import IndustriesSection from "@/components/IndustriesSection";
 import TechStack from "@/components/TechStack";
 import TestimonialsSection from "@/components/TestimonialsSection";
@@ -25,6 +26,7 @@ export default async function HomePage() {
       <CapabilityTabs />
       <StatsBand />
       <PortfolioSection projects={projects} />
+      <ProductSpotlight />
       <IndustriesSection />
       <TechStack />
       <TestimonialsSection testimonials={testimonials} />
