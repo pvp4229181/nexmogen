@@ -62,12 +62,7 @@ export default function Hero() {
             <div className="w-full max-w-[1100px]">
               <AnimatePresence mode="wait">
                 <motion.div key={index} initial={false} animate={{ opacity: 1, y: 0, filter: "blur(0px)" }} exit={reduceMotion ? { opacity: 0 } : { opacity: 0, y: -14, filter: "blur(6px)" }} transition={{ duration: 0.5, ease: "easeOut" }}>
-                  <p className="inline-flex min-h-11 items-center rounded-full border border-white/10 bg-white/[0.035] px-4 text-xs font-medium tracking-wide text-white/75 backdrop-blur-md sm:text-sm">
-                    <span className="mr-2 h-2 w-2 rounded-full bg-primary-light shadow-[0_0_14px_#ff4d57]" aria-hidden="true" />
-                    {slide.eyebrow}
-                  </p>
-
-                  <h1 className="mt-7 max-w-[1100px] text-balance font-display text-[clamp(2.65rem,7vw,7.15rem)] font-semibold leading-[0.94] tracking-[-0.06em] text-white sm:leading-[0.92] sm:tracking-[-0.065em]">
+                  <h1 className="max-w-[1100px] text-balance font-display text-[clamp(2.65rem,7vw,7.15rem)] font-semibold leading-[0.94] tracking-[-0.06em] text-white sm:leading-[0.92] sm:tracking-[-0.065em]">
                     <span className="hero-spectrum-text">{slide.lead}</span>
                     <br />
                     <span>{slide.accent}</span>

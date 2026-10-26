@@ -1,5 +1,5 @@
 ﻿import type { Metadata } from "next";
-import Image from "next/image";
+import CrmWorkflow from "@/components/CrmWorkflow";
 import { FiArrowDown, FiArrowUpRight, FiBarChart2, FiCheck, FiGitMerge, FiPlus, FiTarget, FiUsers } from "react-icons/fi";
 
 export const metadata: Metadata = {
@@ -25,41 +25,45 @@ const faqs = [
 export default function ProductsPage() {
   return (
     <>
-      <section className="relative overflow-hidden bg-ink pb-16 pt-36 sm:pb-20 sm:pt-40">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_80%_35%,rgba(229,9,20,.16),transparent_60%)]" aria-hidden="true" />
-        <div className="section-grid pointer-events-none absolute inset-0 opacity-40" aria-hidden="true" />
-        <div className="container-px relative mx-auto max-w-7xl">
-          <div className="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 pb-6">
-            <p className="eyebrow">Our products / Built by Nexmogen</p>
-            <span className="flex items-center gap-2 text-xs font-medium text-white/70"><span className="h-1.5 w-1.5 rounded-full bg-primary-light" />Available today</span>
-          </div>
-          <div className="grid items-center gap-12 pt-10 lg:grid-cols-[.85fr_1.15fr] lg:gap-10 lg:pt-14">
-            <div>
-              <p className="text-sm font-semibold text-primary-light">Meet Nexmogen CRM</p>
-              <h1 className="mt-5 font-display text-4xl font-bold leading-[1.06] tracking-[-.045em] text-white sm:text-5xl xl:text-6xl">Less chasing.<br /><span className="gradient-text">More closing.</span></h1>
-              <p className="mt-6 max-w-lg text-base leading-8 text-white/70 sm:text-lg">A shared workspace for growing sales teams. Bring your leads, customer conversations and pipeline together, so everyone knows what comes next.</p>
+      <section className="relative overflow-hidden bg-ink pb-16 pt-32 sm:pb-20 sm:pt-36 lg:min-h-[820px] lg:pt-40">
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_72%_28%,rgba(229,9,20,.22),transparent_52%),radial-gradient(ellipse_at_15%_70%,rgba(255,23,68,.09),transparent_48%)]" aria-hidden="true" />
+        <div className="section-grid pointer-events-none absolute inset-0 opacity-35" aria-hidden="true" />
+        <div className="container-px relative mx-auto max-w-[1400px]">
+          <div className="grid items-center gap-12 lg:grid-cols-[.78fr_1.22fr] lg:gap-14 xl:gap-20">
+            <div className="max-w-xl">
+              <div className="inline-flex min-h-10 items-center gap-3 rounded-full border border-white/10 bg-white/[0.035] px-4 text-xs font-medium text-white/70 backdrop-blur-md">
+                <span className="h-2 w-2 rounded-full bg-primary-light shadow-[0_0_12px_rgba(255,77,87,.75)]" aria-hidden="true" />
+                Nexmogen CRM · Available today
+              </div>
+              <p className="mt-8 text-xs font-semibold uppercase tracking-[0.2em] text-primary-light">Built for growing sales teams</p>
+              <h1 className="mt-5 text-balance font-display text-[clamp(3rem,6vw,5.75rem)] font-semibold leading-[.96] tracking-[-.06em] text-white">Every lead.<br /><span className="gradient-text">One clear next step.</span></h1>
+              <p className="mt-7 max-w-lg text-base leading-8 text-white/65 sm:text-lg">Bring leads, customer conversations and your sales pipeline into one shared workspace—so your team always knows what to do next.</p>
+
               <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                <a href={CRM_URL} className="hero-btn-primary gap-2">Explore Nexmogen CRM <FiArrowUpRight aria-hidden="true" /></a>
+                <a href={CRM_URL} className="hero-btn-primary group gap-2">Access Nexmogen CRM <FiArrowUpRight aria-hidden="true" className="transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 motion-reduce:transition-none" /></a>
                 <a href={DEMO_URL} className="hero-btn-secondary gap-2">Book a demo <FiArrowUpRight aria-hidden="true" /></a>
               </div>
-              <p className="mt-5 flex items-center gap-2 text-sm text-white/60"><FiCheck className="shrink-0 text-primary-light" aria-hidden="true" />Built and maintained by the Nexmogen team</p>
-            </div>
-            <figure className="min-w-0">
-              <div className="overflow-hidden rounded-2xl border border-white/15 bg-[#101014] shadow-2xl shadow-black/40">
-                <div className="flex items-center justify-between gap-3 border-b border-white/10 px-4 py-3">
-                  <span className="text-xs font-semibold tracking-wide text-white/80">NEXMOGEN <span className="text-primary-light">CRM</span></span>
-                  <span className="rounded-full border border-white/10 px-3 py-1 text-xs text-white/65">Pipeline workspace</span>
-                </div>
-                <a href="/products/nexmogen-crm-pipeline.webp" target="_blank" rel="noopener noreferrer" aria-label="View full-size Nexmogen CRM pipeline screenshot (opens in a new tab)" className="block cursor-zoom-in focus-visible:outline focus-visible:outline-2 focus-visible:-outline-offset-4 focus-visible:outline-primary-light">
-                  <Image src="/products/nexmogen-crm-pipeline.webp" alt="Actual Nexmogen CRM pipeline showing deals organized by sales stage using sample data" width={1600} height={960} priority sizes="(min-width: 1024px) 55vw, 100vw" className="h-auto w-full" />
-                </a>
+
+              <div className="mt-8 grid grid-cols-3 gap-3 border-t border-white/10 pt-6">
+                {["Manage leads", "Track deals", "Stay in sync"].map((item) => <p key={item} className="flex items-center gap-2 text-xs leading-5 text-white/55 sm:text-sm"><FiCheck className="shrink-0 text-primary-light" aria-hidden="true" />{item}</p>)}
               </div>
-              <figcaption className="mt-4 flex flex-wrap justify-between gap-2 text-xs leading-5 text-white/60"><span>Actual CRM screen · Sample data</span><span>Click preview to view full size <FiArrowUpRight className="ml-1 inline" aria-hidden="true" /></span></figcaption>
-            </figure>
+            </div>
+
+            <div className="relative min-w-0">
+              <div className="pointer-events-none absolute -inset-10 rounded-full bg-primary/10 blur-3xl" aria-hidden="true" />
+              <div className="relative rounded-[1.4rem] border border-white/10 bg-white/[0.025] p-3 shadow-[0_35px_100px_rgba(0,0,0,.45)] backdrop-blur-sm sm:p-5">
+                <div className="mb-4 flex items-center justify-between gap-4 px-1">
+                  <span className="text-xs font-semibold tracking-wide text-white/75">NEXMOGEN <span className="text-primary-light">CRM</span></span>
+                  <span className="text-[10px] uppercase tracking-[0.16em] text-white/40">Live workflow</span>
+                </div>
+                <CrmWorkflow />
+              </div>
+            </div>
           </div>
-          <div className="mt-12 flex flex-wrap items-center justify-between gap-5 border-t border-white/10 pt-6">
-            <p className="max-w-xl text-sm leading-6 text-white/60">Software shaped by the everyday problems we solve for businesses.</p>
-            <a href="#crm-benefits" className="inline-flex min-h-11 items-center gap-3 text-sm text-white/80 transition-colors hover:text-primary-light focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary-light">See what it can do <FiArrowDown aria-hidden="true" /></a>
+
+          <div className="mt-14 flex flex-wrap items-center justify-between gap-5 border-t border-white/10 pt-6 lg:mt-16">
+            <p className="max-w-xl text-sm leading-6 text-white/50">Built and maintained by Nexmogen. Shaped by the everyday work of growing businesses.</p>
+            <a href="#crm-benefits" className="inline-flex min-h-11 items-center gap-3 text-sm font-medium text-white/75 transition-colors hover:text-primary-light focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary-light">Explore the features <FiArrowDown aria-hidden="true" /></a>
           </div>
         </div>
       </section>
