@@ -42,6 +42,20 @@ require a working database connection.
 
 ## Structure
 
+Contact submissions accept JSON up to 16 KB with server-side field validation.
+MongoDB stores atomic rate-limit counters: 30 valid attempts per minute across
+the site, and 5 per normalized email per hour (fixed windows). This shared site
+limit also bounds abuse using rotating email addresses, but can temporarily
+limit legitimate traffic during an attack. Expired counters use a MongoDB TTL
+index; the database user must be able to create the collection and index.
+If MongoDB is unavailable, submissions fail closed. Run
+`npx tsx scripts/check-contact-security.ts` for isolated endpoint checks that
+do not write to the real database.
+
+Remote optimized images are restricted to `nexmogen.com/wp-content/uploads/`
+and `images.unsplash.com/photo-*`. Add explicit trusted hosts if database
+content needs images from another source.
+
 - `app/` — pages: home, about, services, contact, blog, privacy
 - `app/api/contact/route.ts` — POST endpoint that saves contact form
   submissions to MongoDB

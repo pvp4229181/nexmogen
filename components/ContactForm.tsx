@@ -61,6 +61,7 @@ export default function ContactForm() {
           </label>
           <input
             id="name"
+            maxLength={100}
             name="name"
             required
             type="text"
@@ -74,6 +75,7 @@ export default function ContactForm() {
           </label>
           <input
             id="email"
+            maxLength={254}
             name="email"
             required
             type="email"
@@ -89,6 +91,7 @@ export default function ContactForm() {
         </label>
         <input
           id="phone"
+          maxLength={40}
           name="phone"
           type="tel"
           placeholder="+91 00000 00000"
@@ -102,6 +105,7 @@ export default function ContactForm() {
         </label>
         <textarea
           id="message"
+          maxLength={5000}
           name="message"
           required
           rows={5}
