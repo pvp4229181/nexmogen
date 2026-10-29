@@ -23,7 +23,7 @@ export default function CrmPreview() {
     if (!visible || reducedMotion !== false || interacting) return;
     const timer = window.setInterval(() => {
       if (!document.hidden) setCurrent((value) => (value + 1) % screens.length);
-    }, 1000);
+    }, 2000);
     return () => window.clearInterval(timer);
   }, [visible, reducedMotion, interacting]);
 

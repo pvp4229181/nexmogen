@@ -21,7 +21,7 @@ export default function CrmWorkflow() {
     if (reduceMotion) return;
     const timer = window.setInterval(() => {
       if (!document.hidden) setCurrent((value) => (value + 1) % steps.length);
-    }, 1500);
+    }, 2000);
     return () => window.clearInterval(timer);
   }, [reduceMotion]);
 
