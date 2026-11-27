@@ -172,7 +172,35 @@ const fallbackTestimonials: ITestimonial[] = [
   },
 ];
 
-const fallbackBlogPosts: IBlogPost[] = [
+export const fallbackBlogPosts: IBlogPost[] = [
+  {
+    title: "How to Simplify Boolean Expressions with a Karnaugh Map",
+    slug: "karnaugh-map-simplifier-guide",
+    excerpt:
+      "A worked K-map example in SOP and POS form, the grouping rules that matter, and an online solver to check your answer.",
+    author: "Nexmogen Team",
+    published: true,
+    createdAt: new Date("2026-11-27"),
+    imageUrl:
+      "https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=80",
+    content: `A Karnaugh map, or K-map, is a truth table redrawn as a grid so that terms you can combine sit next to each other. Instead of applying Boolean algebra identities one by one, you circle groups of cells and read the simplified expression straight off the map. A simpler expression usually means fewer logic gates in the finished circuit.
+
+The Grouping Rules
+
+Rows and columns follow Gray code order (00, 01, 11, 10), so neighbouring cells differ in only one variable. Groups must be rectangles containing 1, 2, 4, 8 or more cells in powers of two. Make each group as large as possible, use as few groups as possible, and remember that the edges of the map wrap around. Groups may overlap. Cells marked "don't care" can be included when they make a group bigger and ignored otherwise.
+
+A Worked Example
+
+Take a function of three variables, A, B and C, that is 1 for minterms 0, 1, 2, 3 and 7. Put A on the rows and BC on the columns. The whole A = 0 row is filled with ones, which makes a group of four and reduces to A' (NOT A). The remaining one, minterm 7, pairs with minterm 3 directly above it. B and C stay at 1 in both cells while A changes, so the pair reduces to BC. The result is F = A' + BC.
+
+SOP and POS Forms
+
+Grouping the ones gives a sum of products (SOP), as above. Grouping the zeros gives a product of sums (POS). In this example the zeros are at 4, 5 and 6, and the two pairs they form give F = (A' + B)(A' + C). Both expressions describe the same function, so pick whichever needs less hardware with the gates you have.
+
+Check Your Work Online
+
+Once you have solved a map by hand, you can verify it with the K-map solver at https://karnaughmapsimplifier.com/ . It handles 2 to 5 variables in SOP or POS form and shows step-by-step solutions, truth tables and circuits built with standard, NAND-only or NOR-only gates. You can also download the solution as a PDF.`,
+  },
   {
     title: "3 Python Projects Every Beginner Should Build",
     slug: "python-projects-for-beginners",

@@ -53,7 +53,23 @@ export default async function BlogPostPage({
             </p>
             <div className="mt-8 space-y-7 text-base leading-8 text-white/65 sm:text-lg">
               {paragraphs.map((paragraph, i) => (
-                <p key={i}>{paragraph}</p>
+                <p key={i}>
+                  {paragraph.split(/(https:\/\/\S+)/).map((part, j) =>
+                    j % 2 ? (
+                      <a
+                        key={j}
+                        href={part}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="break-words font-semibold text-primary-light underline underline-offset-4 hover:text-white"
+                      >
+                        {part}
+                      </a>
+                    ) : (
+                      part
+                    )
+                  )}
+                </p>
               ))}
             </div>
           </Reveal>
